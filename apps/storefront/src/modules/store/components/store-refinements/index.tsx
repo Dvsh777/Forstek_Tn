@@ -3,6 +3,7 @@
 
 import { useSortBy } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
 import {
   CATEGORY_ATTRIBUTE,
@@ -16,12 +17,13 @@ import PriceRange from "./price-range"
 import RefinementGroup from "./refinement-group"
 
 const SortProducts = ({ currencyCode }: { currencyCode: string }) => {
-  const items = getSortOptions(currencyCode)
+  const t = useT()
+  const items = getSortOptions(currencyCode, t)
   const { currentRefinement, refine } = useSortBy({ items })
 
   return (
     <FilterRadioGroup
-      title="Sort by"
+      title={t("store.refinements.sortBy")}
       items={items}
       value={currentRefinement}
       handleChange={refine}
@@ -35,12 +37,14 @@ const StoreRefinements = ({
 }: {
   currencyCode: string
 }) => {
+  const t = useT()
+
   return (
     <div className="flex flex-col gap-8 py-2">
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Ordering
+            {t("store.refinements.ordering")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">01</span>
         </div>
@@ -50,7 +54,7 @@ const StoreRefinements = ({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Active filters
+            {t("store.refinements.activeFilters")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">02</span>
         </div>
@@ -60,7 +64,7 @@ const StoreRefinements = ({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Product options
+            {t("store.refinements.productOptions")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">03</span>
         </div>
@@ -70,7 +74,7 @@ const StoreRefinements = ({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Price
+            {t("store.refinements.price")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">04</span>
         </div>
@@ -80,7 +84,7 @@ const StoreRefinements = ({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Offers
+            {t("store.refinements.offers")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">05</span>
         </div>
@@ -90,26 +94,26 @@ const StoreRefinements = ({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Categories
+            {t("store.refinements.categories")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">06</span>
         </div>
         <RefinementGroup
           attribute={CATEGORY_ATTRIBUTE}
-          title="Category"
+          title={t("store.refinements.category")}
         />
       </div>
 
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-white/[0.08] pb-3">
           <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Labels
+            {t("store.refinements.labels")}
           </span>
           <span className="font-mono text-[9px] text-zinc-700">07</span>
         </div>
         <RefinementGroup
           attribute={LABELS_ATTRIBUTE}
-          title="Labels"
+          title={t("store.refinements.labelsTitle")}
         />
       </div>
     </div>

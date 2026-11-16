@@ -1,0 +1,84 @@
+{
+  "menu": {
+    "open": "Menu",
+    "close": "Close menu",
+    "navigation": "Navigation",
+    "preferences": "Preferences",
+    "tunisia": "Tunisia"
+  },
+  "links": {
+    "home": "Home",
+    "store": "Store",
+    "account": "Account",
+    "cart": "Cart"
+  },
+  "language": {
+    "label": "Language:"
+  },
+  "country": {
+    "shippingTo": "Shipping to:"
+  },
+  "nav": {
+    "account": "Account",
+    "cartEmpty": "Cart (0)"
+  },
+  "checkout": {
+    "backToCart": "Back to shopping cart",
+    "back": "Back"
+  },
+  "cart": {
+    "cart": "Cart",
+    "yourBag": "Your bag",
+    "item": "item",
+    "items": "items",
+    "viewBag": "View bag →",
+    "qty": "Qty: {quantity}",
+    "remove": "Remove",
+    "subtotal": "Subtotal",
+    "exclTaxes": "Excl. taxes",
+    "goToCart": "Go to cart",
+    "empty": "Your bag is empty",
+    "emptyHint": "Discover something you'll love and add it to your bag.",
+    "explore": "Explore products →"
+  },
+  "mismatch": {
+    "error": "Something went wrong when we tried to transfer your cart",
+    "retry": "Run transfer again",
+    "transferring": "Transferring.."
+  },
+  "search": {
+    "title": "Search",
+    "discover": "Discover FORSTEK",
+    "closeSearch": "Close search",
+    "footer": "FORSTEK / SEARCH",
+    "whatAreYouLookingFor": "What are you looking for?",
+    "placeholder": "Search products...",
+    "ariaLabel": "Search products",
+    "clear": "Clear",
+    "searchResults": "Search results",
+    "productDiscovery": "Product discovery",
+    "resultsCount": "{count} RESULTS",
+    "findSomething": "Find something interesting.",
+    "hint": "Search our collection of clothing, sports nutrition, electronics and home essentials.",
+    "couldntSearch": "Couldn't search products.",
+    "tryAgain": "Please try again.",
+    "searching": "Searching",
+    "noProducts": "No products found.",
+    "noResultsFor": "No results for \"{query}\". Try another search.",
+    "untitled": "Untitled product",
+    "viewProduct": "View product"
+  },
+  "searchForm": {
+    "label": "Search products",
+    "placeholder": "Search products",
+    "submit": "Search"
+  },
+  "shippingNudge": {
+    "unlocked": "Free Shipping unlocked!",
+    "unlock": "Unlock Free Shipping",
+    "only": "Only",
+    "away": "away",
+    "viewCart": "View cart",
+    "viewProducts": "View products"
+  }
+}

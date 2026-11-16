@@ -1,4 +1,5 @@
 import { declineTransferRequest } from "@lib/data/orders"
+import { getT } from "@lib/i18n/server"
 import { Heading, Text } from "@modules/common/components/ui"
 import TransferImage from "@modules/order/components/transfer-image"
 
@@ -8,6 +9,7 @@ export default async function TransferPage({
   params: Promise<{ id: string; token: string }>
 }) {
   const { id, token } = await params
+  const t = await getT()
 
   const { success, error } = await declineTransferRequest(id, token)
 
@@ -18,20 +20,22 @@ export default async function TransferPage({
         {success && (
           <>
             <Heading level="h1" className="text-xl text-zinc-900">
-              Order transfer declined!
+              {t("order.transfer.declinedTitle")}
             </Heading>
             <Text className="text-zinc-600">
-              Transfer of order {id} has been successfully declined.
+              {t("order.transfer.declinedText", { id })}
             </Text>
           </>
         )}
         {!success && (
           <>
             <Text className="text-zinc-600">
-              There was an error declining the transfer. Please try again.
+              {t("order.transfer.declineError")}
             </Text>
             {error && (
-              <Text className="text-red-500">Error message: {error}</Text>
+              <Text className="text-red-500">
+                {t("order.transfer.errorMessage", { error })}
+              </Text>
             )}
           </>
         )}

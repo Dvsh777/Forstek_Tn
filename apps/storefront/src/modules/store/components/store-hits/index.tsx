@@ -5,6 +5,7 @@ import type { Hit } from "instantsearch.js"
 import { useEffect, useRef } from "react"
 import { useHits, useInstantSearch } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import useSearchSettled from "@lib/hooks/use-search-settled"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Text } from "@modules/common/components/ui"
@@ -27,6 +28,7 @@ type StoreHitsProps = {
 }
 
 const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
+  const t = useT()
   const { items } = useHits<ProductHit>()
   const { status, error, indexUiState } = useInstantSearch()
   const { isSearching, hasNoResultsYet } = useSearchSettled()
@@ -98,7 +100,7 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
         className="py-16 text-center text-ui-fg-error"
         data-testid="products-error"
       >
-        Couldn&apos;t load products
+        {t("store.hits.couldntLoad")}
         {error?.message ? `: ${error.message}` : "."}
       </Text>
     )
@@ -113,7 +115,7 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
           className="py-16 text-center text-ui-fg-subtle"
           data-testid="no-products"
         >
-          No products matched these filters.
+          {t("store.hits.noMatch")}
         </Text>
       ) : (
         <div className="relative isolate">

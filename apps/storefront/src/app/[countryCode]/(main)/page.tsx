@@ -4,11 +4,13 @@ import HomeTemplate from "@modules/home/templates"
 import { listCategories } from "@lib/data/categories"
 import { listCollections } from "@lib/data/collections"
 import { getRegion, listRegions } from "@lib/data/regions"
+import { getT } from "@lib/i18n/server"
 import { toJsonLd } from "@lib/util/product-structured-data"
 import { getSiteOrigin, listCountryCodes, STORE_NAME } from "@lib/util/site"
 import { buildRegionsReturnPolicies } from "@lib/util/store-policies"
 
-export const dynamic = "force-static"
+// Not force-static: the interface language comes from the locale cookie, which
+// force-static would hide, leaving the page permanently in English.
 export const revalidate = 60
 
 export async function generateMetadata(props: {
@@ -16,11 +18,11 @@ export async function generateMetadata(props: {
 }): Promise<Metadata> {
   const { countryCode } = await props.params
   const [origin, regions] = await Promise.all([getSiteOrigin(), listRegions()])
+  const t = await getT()
 
   return {
-    title: "FORSTEK | Clothing, sports nutrition, gadgets and home",
-    description:
-      "Shop clothing, sports and nutrition, electronics and gadgets, and lifestyle and home products. Prices in TND.",
+    title: t("common.meta.homeTitle"),
+    description: t("common.meta.homeDescription"),
     alternates: {
       canonical: `${origin}/${countryCode}`,
       languages: {

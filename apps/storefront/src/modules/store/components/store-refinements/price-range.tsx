@@ -4,6 +4,7 @@ import * as Slider from "@radix-ui/react-slider"
 import { useEffect, useState } from "react"
 import { useRange } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import { indexedCurrency, priceAttribute } from "@lib/search-client"
 
 function formatAmount(amount: number, currency: string) {
@@ -25,6 +26,7 @@ function formatAmount(amount: number, currency: string) {
  * supplies the slider's bounds. Refines on release rather than per pixel.
  */
 const PriceRange = ({ currencyCode }: { currencyCode: string }) => {
+  const t = useT()
   const { start, range, canRefine, refine } = useRange({
     attribute: priceAttribute("min_price", currencyCode),
   })
@@ -53,7 +55,9 @@ const PriceRange = ({ currencyCode }: { currencyCode: string }) => {
 
   return (
     <div className="flex flex-col gap-y-4">
-      <span className="txt-compact-small-plus text-ui-fg-subtle">Price</span>
+      <span className="txt-compact-small-plus text-ui-fg-subtle">
+        {t("store.refinements.price")}
+      </span>
 
       <div className="flex flex-col gap-y-3 pr-6">
         <Slider.Root
@@ -67,7 +71,7 @@ const PriceRange = ({ currencyCode }: { currencyCode: string }) => {
           // Only refine when the thumb is released, so dragging doesn't fire a
           // search per pixel.
           onValueCommit={(committed) => refine([committed[0], committed[1]])}
-          aria-label="Price range"
+          aria-label={t("store.refinements.priceRange")}
           data-testid="price-range"
         >
           <Slider.Track className="relative h-0.5 w-full grow rounded-full bg-ui-border-base">
@@ -77,7 +81,11 @@ const PriceRange = ({ currencyCode }: { currencyCode: string }) => {
             <Slider.Thumb
               key={index}
               className="block h-4 w-4 rounded-full border border-ui-border-interactive bg-ui-bg-base shadow-elevation-card-rest outline-none focus-visible:ring-2 focus-visible:ring-ui-fg-interactive"
-              aria-label={index === 0 ? "Minimum price" : "Maximum price"}
+              aria-label={
+                index === 0
+                  ? t("store.refinements.minPrice")
+                  : t("store.refinements.maxPrice")
+              }
             />
           ))}
         </Slider.Root>

@@ -1,0 +1,42 @@
+{
+  "actions": {
+    "inStock": "In stock",
+    "outOfStock": "Out of stock",
+    "selectVariant": "Select variant",
+    "addToCart": "Add to cart",
+    "selectOptions": "Select Options",
+    "selectOption": "Select {title}",
+    "close": "Close"
+  },
+  "price": {
+    "from": "From",
+    "original": "Original:"
+  },
+  "tabs": {
+    "productInformation": "Product Information",
+    "shippingReturns": "Shipping & Returns",
+    "material": "Material",
+    "countryOfOrigin": "Country of origin",
+    "type": "Type",
+    "weight": "Weight",
+    "dimensions": "Dimensions",
+    "fastDelivery": "Fast delivery",
+    "fastDeliveryText": "Your package will arrive in 3-5 business days at your pick up location or in the comfort of your home.",
+    "simpleExchanges": "Simple exchanges",
+    "simpleExchangesText": "Is the fit not quite right? No worries - we'll exchange your product for a new one.",
+    "easyReturns": "Easy returns",
+    "easyReturnsText": "Just return your product and we'll refund your money. No questions asked – we'll do our best to make sure your return is hassle-free."
+  },
+  "related": {
+    "title": "Related products",
+    "subtitle": "You might also want to check out these products."
+  },
+  "gallery": {
+    "imageAlt": "Product image {number}"
+  },
+  "onboarding": {
+    "created": "Your demo product was successfully created! 🎉",
+    "continueSetupText": "You can now continue setting up your store in the admin.",
+    "continueSetup": "Continue setup in admin"
+  }
+}

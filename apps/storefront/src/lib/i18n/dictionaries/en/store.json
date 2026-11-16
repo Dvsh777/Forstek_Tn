@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "Store",
+    "description": "Explore all of our products."
+  },
+  "page": {
+    "eyebrow": "THE STORE",
+    "title": "All products",
+    "intro": "Useful finds, everyday essentials and things worth discovering. Take a look around.",
+    "curated": "Curated for everyday discovery",
+    "online": "Online",
+    "collection": "COLLECTION"
+  },
+  "toolbar": {
+    "filters": "Filters",
+    "refine": "Refine"
+  },
+  "drawer": {
+    "closeFilters": "Close filters",
+    "productFilters": "Product filters",
+    "discover": "DISCOVER",
+    "title": "Filters",
+    "refineSearch": "Refine your search",
+    "filtersIndex": "FILTERS",
+    "showProducts": "Show products"
+  },
+  "empty": {
+    "noResults": "No results found",
+    "nothingHere": "Nothing here. Yet.",
+    "tryChanging": "Try changing your filters or search for something else.",
+    "keepExploring": "Keep exploring"
+  },
+  "pagination": {
+    "nav": "Product pagination",
+    "goToPage": "Go to page {page}",
+    "previous": "Previous page",
+    "next": "Next page",
+    "page": "Page"
+  },
+  "sort": {
+    "refineYourSearch": "Refine your search",
+    "displayOrder": "Display order",
+    "sortBy": "Sort by",
+    "sortProducts": "Sort products",
+    "latest": "Latest arrivals",
+    "latestDescription": "Recently added",
+    "priceAsc": "Price: low to high",
+    "priceAscDescription": "Lowest price first",
+    "priceDesc": "Price: high to low",
+    "priceDescDescription": "Highest price first"
+  },
+  "options": {
+    "productAttributes": "Product attributes",
+    "title": "Options",
+    "clear": "Clear",
+    "option": "Option"
+  },
+  "hits": {
+    "couldntLoad": "Couldn't load products",
+    "noMatch": "No products matched these filters."
+  },
+  "refinements": {
+    "sortBy": "Sort by",
+    "ordering": "Ordering",
+    "activeFilters": "Active filters",
+    "productOptions": "Product options",
+    "price": "Price",
+    "offers": "Offers",
+    "categories": "Categories",
+    "labels": "Labels",
+    "category": "Category",
+    "labelsTitle": "Labels",
+    "relevance": "Relevance",
+    "latestArrivals": "Latest Arrivals",
+    "priceLowHigh": "Price: Low -> High",
+    "priceHighLow": "Price: High -> Low",
+    "titleAZ": "Title: A -> Z",
+    "titleZA": "Title: Z -> A",
+    "onSale": "On sale",
+    "upTo": "Up to {amount}",
+    "from": "From {amount}",
+    "categoryChip": "Category: {label}",
+    "labelChip": "Label: {label}",
+    "appliedFilters": "Applied filters",
+    "clearAll": "Clear all",
+    "removeFilter": "Remove filter {label}",
+    "onSaleOnly": "On sale only",
+    "priceRange": "Price range",
+    "minPrice": "Minimum price",
+    "maxPrice": "Maximum price"
+  },
+  "search": {
+    "placeholder": "Search products",
+    "ariaLabel": "Search products",
+    "clear": "Clear search"
+  }
+}

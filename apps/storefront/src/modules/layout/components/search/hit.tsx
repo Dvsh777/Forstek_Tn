@@ -6,6 +6,7 @@ import type { Hit as HitType } from "instantsearch.js"
 
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import PlaceholderImage from "@modules/common/icons/placeholder-image"
+import { useT } from "@lib/i18n/provider"
 
 export type ProductHit = HitType<{
   title: string | null
@@ -19,6 +20,8 @@ type SearchHitProps = {
 }
 
 const SearchHit = ({ hit, onNavigate }: SearchHitProps) => {
+  const t = useT()
+
   if (!hit.handle) return null
 
   return (
@@ -51,11 +54,11 @@ const SearchHit = ({ hit, onNavigate }: SearchHitProps) => {
         <div className="flex min-w-0 flex-1 items-center justify-between gap-3">
           <div className="min-w-0">
             <p className="line-clamp-2 text-[13px] font-medium leading-relaxed text-zinc-300 transition-colors group-hover:text-white">
-              {hit.title || "Untitled product"}
+              {hit.title || t("layout.search.untitled")}
             </p>
 
             <span className="mt-2 block font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
-              View product
+              {t("layout.search.viewProduct")}
             </span>
           </div>
 

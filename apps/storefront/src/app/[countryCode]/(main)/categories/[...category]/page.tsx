@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { getCategoryByHandle } from "@lib/data/categories"
+import { getT } from "@lib/i18n/server"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { parseOptionValueIds } from "@lib/util/product-option-filters"
@@ -24,7 +25,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
     const title = productCategory.name + " | Medusa Store"
 
-    const description = productCategory.description ?? `${title} category.`
+    const t = await getT()
+    const description =
+      productCategory.description ??
+      t("common.meta.categoryDescription", { title })
 
     return {
       title: `${title} | Medusa Store`,

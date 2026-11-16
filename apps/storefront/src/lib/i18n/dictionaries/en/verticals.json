@@ -1,0 +1,18 @@
+{
+  "clothing": {
+    "name": "Clothing",
+    "examples": "T-shirts, pants and outfits"
+  },
+  "sports-nutrition": {
+    "name": "Sports & Nutrition",
+    "examples": "Creatine, protein and fitness accessories"
+  },
+  "electronics-gadgets": {
+    "name": "Electronics & Gadgets",
+    "examples": "Gadgets, accessories and tech products"
+  },
+  "lifestyle-home": {
+    "name": "Lifestyle & Home",
+    "examples": "Everyday items and home accessories"
+  }
+}

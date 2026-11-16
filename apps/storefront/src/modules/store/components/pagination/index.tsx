@@ -1,6 +1,7 @@
 
 "use client"
 
+import { useT } from "@lib/i18n/provider"
 import { clx } from "@modules/common/components/ui"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 
@@ -13,6 +14,7 @@ export function Pagination({
   totalPages: number
   "data-testid"?: string
 }) {
+  const t = useT()
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -39,7 +41,7 @@ export function Pagination({
     <button
       key={p}
       type="button"
-      aria-label={`Go to page ${p}`}
+      aria-label={t("store.pagination.goToPage", { page: p })}
       aria-current={isCurrent ? "page" : undefined}
       disabled={isCurrent}
       onClick={() => handlePageChange(p)}
@@ -110,7 +112,7 @@ export function Pagination({
 
   return (
     <nav
-      aria-label="Product pagination"
+      aria-label={t("store.pagination.nav")}
       className="mt-16 flex w-full flex-col items-center gap-5 border-t border-white/[0.08] pt-8"
     >
       <div className="flex items-center gap-2">
@@ -118,7 +120,7 @@ export function Pagination({
           type="button"
           onClick={() => handlePageChange(page - 1)}
           disabled={page <= 1}
-          aria-label="Previous page"
+          aria-label={t("store.pagination.previous")}
           className="mr-2 flex h-10 w-10 items-center justify-center border border-white/[0.10] bg-white/[0.025] text-zinc-500 transition-all duration-300 hover:border-white/40 hover:text-white disabled:pointer-events-none disabled:opacity-25"
         >
           <svg
@@ -142,7 +144,7 @@ export function Pagination({
           type="button"
           onClick={() => handlePageChange(page + 1)}
           disabled={page >= totalPages}
-          aria-label="Next page"
+          aria-label={t("store.pagination.next")}
           className="ml-2 flex h-10 w-10 items-center justify-center border border-white/[0.10] bg-white/[0.025] text-zinc-500 transition-all duration-300 hover:border-white/40 hover:text-white disabled:pointer-events-none disabled:opacity-25"
         >
           <svg
@@ -160,7 +162,8 @@ export function Pagination({
       </div>
 
       <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
-        Page {page} <span className="mx-1 text-zinc-800">/</span> {totalPages}
+        {t("store.pagination.page")} {page}{" "}
+        <span className="mx-1 text-zinc-800">/</span> {totalPages}
       </span>
     </nav>
   )

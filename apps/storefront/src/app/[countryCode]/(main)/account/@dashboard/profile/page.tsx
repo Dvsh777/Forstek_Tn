@@ -7,13 +7,19 @@ import ProfileName from "@modules/account/components/profile-name"
 import { notFound } from "next/navigation"
 import { listRegions } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
+import { getT } from "@lib/i18n/server"
 
-export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your Medusa Store profile.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT()
+
+  return {
+    title: t("account.pages.profile.title"),
+    description: t("account.pages.profile.description"),
+  }
 }
 
 export default async function Profile() {
+  const t = await getT()
   const customer = await retrieveCustomer()
   const regions = await listRegions()
 
@@ -24,11 +30,9 @@ export default async function Profile() {
   return (
     <div className="w-full" data-testid="profile-page-wrapper">
       <div className="mb-8 flex flex-col gap-y-4">
-        <h1 className="text-2xl-semi">Profile</h1>
+        <h1 className="text-2xl-semi">{t("account.pages.profile.heading")}</h1>
         <p className="text-base-regular">
-          View and update your profile information, including your name, email,
-          and phone number. You can also update your billing address, or change
-          your password.
+          {t("account.pages.profile.text")}
         </p>
       </div>
       <div className="flex flex-col gap-y-8 w-full">

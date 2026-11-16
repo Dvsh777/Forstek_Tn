@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "Boutique",
+    "description": "Explorez tous nos produits."
+  },
+  "page": {
+    "eyebrow": "LA BOUTIQUE",
+    "title": "Tous les produits",
+    "intro": "Des trouvailles utiles, des indispensables du quotidien et des choses à découvrir. Jetez un œil.",
+    "curated": "Sélectionné pour la découverte au quotidien",
+    "online": "En ligne",
+    "collection": "COLLECTION"
+  },
+  "toolbar": {
+    "filters": "Filtres",
+    "refine": "Affiner"
+  },
+  "drawer": {
+    "closeFilters": "Fermer les filtres",
+    "productFilters": "Filtres de produits",
+    "discover": "DÉCOUVRIR",
+    "title": "Filtres",
+    "refineSearch": "Affinez votre recherche",
+    "filtersIndex": "FILTRES",
+    "showProducts": "Afficher les produits"
+  },
+  "empty": {
+    "noResults": "Aucun résultat",
+    "nothingHere": "Rien ici. Pour l'instant.",
+    "tryChanging": "Essayez de modifier vos filtres ou de chercher autre chose.",
+    "keepExploring": "Continuez à explorer"
+  },
+  "pagination": {
+    "nav": "Pagination des produits",
+    "goToPage": "Aller à la page {page}",
+    "previous": "Page précédente",
+    "next": "Page suivante",
+    "page": "Page"
+  },
+  "sort": {
+    "refineYourSearch": "Affinez votre recherche",
+    "displayOrder": "Ordre d'affichage",
+    "sortBy": "Trier par",
+    "sortProducts": "Trier les produits",
+    "latest": "Nouveautés",
+    "latestDescription": "Ajoutés récemment",
+    "priceAsc": "Prix : croissant",
+    "priceAscDescription": "Prix le plus bas d'abord",
+    "priceDesc": "Prix : décroissant",
+    "priceDescDescription": "Prix le plus élevé d'abord"
+  },
+  "options": {
+    "productAttributes": "Attributs du produit",
+    "title": "Options",
+    "clear": "Effacer",
+    "option": "Option"
+  },
+  "hits": {
+    "couldntLoad": "Impossible de charger les produits",
+    "noMatch": "Aucun produit ne correspond à ces filtres."
+  },
+  "refinements": {
+    "sortBy": "Trier par",
+    "ordering": "Tri",
+    "activeFilters": "Filtres actifs",
+    "productOptions": "Options du produit",
+    "price": "Prix",
+    "offers": "Offres",
+    "categories": "Catégories",
+    "labels": "Étiquettes",
+    "category": "Catégorie",
+    "labelsTitle": "Étiquettes",
+    "relevance": "Pertinence",
+    "latestArrivals": "Nouveautés",
+    "priceLowHigh": "Prix : croissant",
+    "priceHighLow": "Prix : décroissant",
+    "titleAZ": "Titre : A -> Z",
+    "titleZA": "Titre : Z -> A",
+    "onSale": "En promotion",
+    "upTo": "Jusqu'à {amount}",
+    "from": "À partir de {amount}",
+    "categoryChip": "Catégorie : {label}",
+    "labelChip": "Étiquette : {label}",
+    "appliedFilters": "Filtres appliqués",
+    "clearAll": "Tout effacer",
+    "removeFilter": "Retirer le filtre {label}",
+    "onSaleOnly": "Uniquement en promotion",
+    "priceRange": "Fourchette de prix",
+    "minPrice": "Prix minimum",
+    "maxPrice": "Prix maximum"
+  },
+  "search": {
+    "placeholder": "Rechercher des produits",
+    "ariaLabel": "Rechercher des produits",
+    "clear": "Effacer la recherche"
+  }
+}

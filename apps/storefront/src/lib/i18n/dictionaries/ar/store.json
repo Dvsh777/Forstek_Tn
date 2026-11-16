@@ -1,0 +1,97 @@
+{
+  "meta": {
+    "title": "المتجر",
+    "description": "استكشف جميع منتجاتنا."
+  },
+  "page": {
+    "eyebrow": "المتجر",
+    "title": "جميع المنتجات",
+    "intro": "اكتشافات مفيدة وأساسيات يومية وأشياء تستحق الاكتشاف. ألقِ نظرة.",
+    "curated": "مختارة للاكتشاف اليومي",
+    "online": "عبر الإنترنت",
+    "collection": "المجموعة"
+  },
+  "toolbar": {
+    "filters": "التصفية",
+    "refine": "تحسين"
+  },
+  "drawer": {
+    "closeFilters": "إغلاق عوامل التصفية",
+    "productFilters": "عوامل تصفية المنتجات",
+    "discover": "اكتشف",
+    "title": "التصفية",
+    "refineSearch": "حسّن بحثك",
+    "filtersIndex": "التصفية",
+    "showProducts": "عرض المنتجات"
+  },
+  "empty": {
+    "noResults": "لم يتم العثور على نتائج",
+    "nothingHere": "لا شيء هنا. حتى الآن.",
+    "tryChanging": "جرّب تغيير عوامل التصفية أو ابحث عن شيء آخر.",
+    "keepExploring": "واصل الاستكشاف"
+  },
+  "pagination": {
+    "nav": "ترقيم صفحات المنتجات",
+    "goToPage": "الانتقال إلى الصفحة {page}",
+    "previous": "الصفحة السابقة",
+    "next": "الصفحة التالية",
+    "page": "صفحة"
+  },
+  "sort": {
+    "refineYourSearch": "حسّن بحثك",
+    "displayOrder": "ترتيب العرض",
+    "sortBy": "ترتيب حسب",
+    "sortProducts": "ترتيب المنتجات",
+    "latest": "وصل حديثًا",
+    "latestDescription": "أضيفت مؤخرًا",
+    "priceAsc": "السعر: من الأقل إلى الأعلى",
+    "priceAscDescription": "الأقل سعرًا أولًا",
+    "priceDesc": "السعر: من الأعلى إلى الأقل",
+    "priceDescDescription": "الأعلى سعرًا أولًا"
+  },
+  "options": {
+    "productAttributes": "خصائص المنتج",
+    "title": "الخيارات",
+    "clear": "مسح",
+    "option": "خيار"
+  },
+  "hits": {
+    "couldntLoad": "تعذّر تحميل المنتجات",
+    "noMatch": "لا توجد منتجات تطابق عوامل التصفية هذه."
+  },
+  "refinements": {
+    "sortBy": "ترتيب حسب",
+    "ordering": "الترتيب",
+    "activeFilters": "عوامل التصفية النشطة",
+    "productOptions": "خيارات المنتج",
+    "price": "السعر",
+    "offers": "العروض",
+    "categories": "الفئات",
+    "labels": "الوسوم",
+    "category": "الفئة",
+    "labelsTitle": "الوسوم",
+    "relevance": "الأكثر صلة",
+    "latestArrivals": "وصل حديثًا",
+    "priceLowHigh": "السعر: من الأقل إلى الأعلى",
+    "priceHighLow": "السعر: من الأعلى إلى الأقل",
+    "titleAZ": "العنوان: أ ← ي",
+    "titleZA": "العنوان: ي ← أ",
+    "onSale": "مخفّض",
+    "upTo": "حتى {amount}",
+    "from": "من {amount}",
+    "categoryChip": "الفئة: {label}",
+    "labelChip": "الوسم: {label}",
+    "appliedFilters": "عوامل التصفية المطبقة",
+    "clearAll": "مسح الكل",
+    "removeFilter": "إزالة عامل التصفية {label}",
+    "onSaleOnly": "المخفّضة فقط",
+    "priceRange": "نطاق السعر",
+    "minPrice": "السعر الأدنى",
+    "maxPrice": "السعر الأقصى"
+  },
+  "search": {
+    "placeholder": "ابحث عن المنتجات",
+    "ariaLabel": "ابحث عن المنتجات",
+    "clear": "مسح البحث"
+  }
+}

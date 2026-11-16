@@ -1,4 +1,5 @@
 
+import { getT } from "@lib/i18n/server"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -27,7 +28,8 @@ const getProfileCompletion = (customer: HttpTypes.StoreCustomer | null) => {
   return (count / 4) * 100
 }
 
-const Overview = ({ customer, orders }: OverviewProps) => {
+const Overview = async ({ customer, orders }: OverviewProps) => {
+  const t = await getT()
   const completion = getProfileCompletion(customer)
   const addressCount = customer?.addresses?.length || 0
 
@@ -40,7 +42,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
       <header className="flex flex-col gap-6 border-b border-white/10 pb-8 sm:flex-row sm:items-end sm:justify-between">
         <div className="min-w-0">
           <p className="mb-3 text-[10px] uppercase tracking-[0.22em] text-white/35">
-            FORSTEK / ACCOUNT
+            {t("account.eyebrow")}
           </p>
 
           <h1
@@ -48,11 +50,13 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             data-testid="welcome-message"
             data-value={customer?.first_name}
           >
-            Hello{customer?.first_name ? `, ${customer.first_name}` : ""}
+            {customer?.first_name
+              ? t("account.overview.helloName", { name: customer.first_name })
+              : t("account.overview.hello")}
           </h1>
 
           <p className="mt-3 break-all text-sm text-white/45">
-            Signed in as{" "}
+            {t("account.overview.signedInAs")}{" "}
             <span
               className="text-white/75"
               data-testid="customer-email"
@@ -67,7 +71,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
           href="/account/profile"
           className="inline-flex w-full items-center justify-center border border-white/20 px-6 py-3.5 text-xs font-semibold uppercase tracking-wider text-white transition-colors hover:border-white hover:bg-white hover:text-black sm:w-auto"
         >
-          Edit profile
+          {t("account.overview.editProfile")}
         </LocalizedClientLink>
       </header>
 
@@ -76,7 +80,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
         <div className="border border-white/10 bg-[#0d0e10] p-5 sm:p-7 xl:p-8">
           <div className="flex items-center justify-between gap-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-white/40">
-              Profile completion
+              {t("account.overview.profileCompletion")}
             </p>
             <span className="text-xs text-white/35">01 / 02</span>
           </div>
@@ -89,7 +93,9 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             >
               {completion}%
             </span>
-            <span className="mb-2 text-xs text-white/40">Complete</span>
+            <span className="mb-2 text-xs text-white/40">
+              {t("account.overview.complete")}
+            </span>
           </div>
 
           <div className="mt-6 h-1 bg-white/10">
@@ -100,14 +106,14 @@ const Overview = ({ customer, orders }: OverviewProps) => {
           </div>
 
           <p className="mt-4 text-xs text-white/35">
-            Complete your profile to keep your account information up to date.
+            {t("account.overview.completeHint")}
           </p>
         </div>
 
         <div className="border border-white/10 bg-[#0d0e10] p-5 sm:p-7 xl:p-8">
           <div className="flex items-center justify-between gap-4">
             <p className="text-[10px] uppercase tracking-[0.18em] text-white/40">
-              Saved addresses
+              {t("account.overview.savedAddresses")}
             </p>
             <span className="text-xs text-white/35">02 / 02</span>
           </div>
@@ -121,19 +127,21 @@ const Overview = ({ customer, orders }: OverviewProps) => {
               {addressCount}
             </span>
             <span className="mb-2 text-xs text-white/40">
-              {addressCount === 1 ? "Address" : "Addresses"}
+              {addressCount === 1
+                ? t("account.overview.address")
+                : t("account.overview.addresses")}
             </span>
           </div>
 
           <p className="mt-6 text-xs text-white/35">
-            Your saved delivery and billing addresses.
+            {t("account.overview.savedHint")}
           </p>
 
           <LocalizedClientLink
             href="/account/addresses"
             className="mt-4 inline-flex text-xs uppercase tracking-wider text-white/70 underline underline-offset-4 transition-colors hover:text-white"
           >
-            Manage addresses
+            {t("account.overview.manageAddresses")}
           </LocalizedClientLink>
         </div>
       </section>
@@ -143,15 +151,17 @@ const Overview = ({ customer, orders }: OverviewProps) => {
         <div className="mb-6 flex flex-col gap-3 border-b border-white/10 pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="mb-2 text-[10px] uppercase tracking-[0.2em] text-white/35">
-              YOUR ACTIVITY
+              {t("account.overview.activity")}
             </p>
             <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-              Recent orders
+              {t("account.overview.recentOrders")}
             </h2>
           </div>
 
           <span className="text-xs text-white/35">
-            {orders?.length || 0} total orders
+            {t("account.overview.totalOrders", {
+              count: String(orders?.length || 0),
+            })}
           </span>
         </div>
 
@@ -170,7 +180,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                   <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="mb-2 text-[10px] uppercase tracking-wider text-white/35">
-                        Order number
+                        {t("account.overview.orderNumber")}
                       </p>
                       <p
                         className="text-base font-semibold text-white"
@@ -184,7 +194,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
                     <div className="flex items-center justify-between gap-6 sm:justify-end">
                       <div className="sm:text-right">
                         <p className="mb-2 text-[10px] uppercase tracking-wider text-white/35">
-                          Total
+                          {t("account.overview.total")}
                         </p>
                         <p
                           className="text-base font-semibold text-white"
@@ -203,7 +213,7 @@ const Overview = ({ customer, orders }: OverviewProps) => {
 
                   <div className="mt-5 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
                     <span className="text-xs text-white/40">
-                      Date placed
+                      {t("account.overview.datePlaced")}
                     </span>
                     <span
                       className="text-xs text-white/65"
@@ -221,16 +231,18 @@ const Overview = ({ customer, orders }: OverviewProps) => {
             className="border border-white/10 bg-[#0d0e10] px-5 py-14 text-center sm:py-20"
             data-testid="no-orders-message"
           >
-            <p className="text-base text-white/75">No orders yet.</p>
+            <p className="text-base text-white/75">
+              {t("account.overview.noOrders")}
+            </p>
             <p className="mt-2 text-sm text-white/35">
-              Your orders will appear here once you place one.
+              {t("account.overview.noOrdersText")}
             </p>
 
             <LocalizedClientLink
               href="/store"
               className="mt-6 inline-block border border-white/20 px-6 py-3 text-xs uppercase tracking-wider text-white transition-colors hover:bg-white hover:text-black"
             >
-              Explore the store
+              {t("account.overview.explore")}
             </LocalizedClientLink>
           </div>
         )}

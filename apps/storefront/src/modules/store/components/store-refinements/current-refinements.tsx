@@ -3,6 +3,8 @@
 import { XMarkMini } from "@medusajs/icons"
 import { useClearRefinements, useCurrentRefinements } from "react-instantsearch"
 
+import { TFunction } from "@lib/i18n/config"
+import { useT } from "@lib/i18n/provider"
 import { indexedCurrency, priceAttribute } from "@lib/search-client"
 import { convertToLocale } from "@lib/util/money"
 import {
@@ -20,7 +22,11 @@ type Refinement = ReturnType<
  * value, which is the option's `Size:M` form for options and a bare `true` for
  * the on-sale toggle — neither says what it filters on out of context.
  */
-function refinementLabel(refinement: Refinement, currencyCode: string) {
+function refinementLabel(
+  refinement: Refinement,
+  currencyCode: string,
+  t: TFunction
+) {
   const { attribute, label, value, operator } = refinement
 
   if (attribute === OPTION_VALUES_ATTRIBUTE) {
@@ -34,7 +40,7 @@ function refinementLabel(refinement: Refinement, currencyCode: string) {
   }
 
   if (attribute === priceAttribute("on_sale", currencyCode)) {
-    return "On sale"
+    return t("store.refinements.onSale")
   }
 
   if (attribute === priceAttribute("min_price", currencyCode)) {
@@ -45,16 +51,16 @@ function refinementLabel(refinement: Refinement, currencyCode: string) {
     })
 
     return operator === "<=" || operator === "<"
-      ? `Up to ${amount}`
-      : `From ${amount}`
+      ? t("store.refinements.upTo", { amount })
+      : t("store.refinements.from", { amount })
   }
 
   if (attribute === CATEGORY_ATTRIBUTE) {
-    return `Category: ${label}`
+    return t("store.refinements.categoryChip", { label })
   }
 
   if (attribute === LABELS_ATTRIBUTE) {
-    return `Label: ${label}`
+    return t("store.refinements.labelChip", { label })
   }
 
   return label
@@ -66,6 +72,7 @@ function refinementLabel(refinement: Refinement, currencyCode: string) {
  * only what the sidebar controls shows up here.
  */
 const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
+  const t = useT()
   const { items, refine } = useCurrentRefinements()
   const { canRefine: canClearAll, refine: clearAll } = useClearRefinements()
 
@@ -79,7 +86,7 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
     <div className="flex flex-col gap-y-3" data-testid="current-refinements">
       <div className="flex items-center justify-between gap-x-2 pr-6">
         <span className="txt-compact-small-plus text-ui-fg-subtle">
-          Applied filters
+          {t("store.refinements.appliedFilters")}
         </span>
         {canClearAll && (
           <button
@@ -87,14 +94,14 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
             className="txt-compact-small-plus text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
             data-testid="clear-refinements"
           >
-            Clear all
+            {t("store.refinements.clearAll")}
           </button>
         )}
       </div>
 
       <ul className="flex flex-wrap gap-2 pr-6">
         {refinements.map((refinement) => {
-          const label = refinementLabel(refinement, currencyCode)
+          const label = refinementLabel(refinement, currencyCode, t)
 
           return (
             <li
@@ -104,7 +111,7 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
             >
               <button
                 onClick={() => refine(refinement)}
-                aria-label={`Remove filter ${label}`}
+                aria-label={t("store.refinements.removeFilter", { label })}
                 className="border-ui-border-interactive text-ui-fg-base border text-small-regular h-8 rounded-rounded px-3 flex items-center gap-x-1.5 transition-colors duration-150 hover:bg-ui-bg-base-hover"
                 data-testid="remove-refinement"
               >

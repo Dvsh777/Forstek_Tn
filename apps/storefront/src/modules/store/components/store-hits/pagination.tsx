@@ -3,9 +3,11 @@
 
 import { usePagination } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import { clx } from "@modules/common/components/ui"
 
 const SearchPagination = () => {
+  const t = useT()
   const { pages, currentRefinement, nbPages, refine } = usePagination({
     padding: 2,
   })
@@ -22,7 +24,7 @@ const SearchPagination = () => {
         key={page}
         type="button"
         aria-current={active ? "page" : undefined}
-        aria-label={`Go to page ${page + 1}`}
+        aria-label={t("store.pagination.goToPage", { page: page + 1 })}
         disabled={active}
         onClick={() => refine(page)}
         className={clx(

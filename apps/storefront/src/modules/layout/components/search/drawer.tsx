@@ -3,6 +3,7 @@
 
 import { Dialog, Transition } from "@headlessui/react"
 import { XMark } from "@medusajs/icons"
+import { useT } from "@lib/i18n/provider"
 import React, { Fragment } from "react"
 
 type SearchDrawerProps = {
@@ -12,6 +13,8 @@ type SearchDrawerProps = {
 }
 
 const SearchDrawer = ({ isOpen, close, children }: SearchDrawerProps) => {
+  const t = useT()
+
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-[75]" onClose={close}>
@@ -47,17 +50,17 @@ const SearchDrawer = ({ isOpen, close, children }: SearchDrawerProps) => {
                 <div className="flex items-center justify-between border-b border-white/[0.09] px-6 py-6">
                   <div>
                     <Dialog.Title className="text-sm font-semibold tracking-wide text-white">
-                      Search
+                      {t("layout.search.title")}
                     </Dialog.Title>
                     <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
-                      Discover FORSTEK
+                      {t("layout.search.discover")}
                     </p>
                   </div>
 
                   <button
                     type="button"
                     onClick={close}
-                    aria-label="Close search"
+                    aria-label={t("layout.search.closeSearch")}
                     className="flex h-9 w-9 items-center justify-center border border-white/[0.10] text-zinc-400 transition-all hover:border-white/40 hover:bg-white hover:text-black"
                     data-testid="close-search-drawer"
                   >
@@ -73,10 +76,10 @@ const SearchDrawer = ({ isOpen, close, children }: SearchDrawerProps) => {
                 {/* Footer */}
                 <div className="flex items-center justify-between border-t border-white/[0.08] px-6 py-4">
                   <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
-                    FORSTEK / SEARCH
+                    {t("layout.search.footer")}
                   </span>
                   <span className="text-[9px] uppercase tracking-widest text-zinc-700">
-                    Tunisia
+                    {t("layout.menu.tunisia")}
                   </span>
                 </div>
               </Dialog.Panel>

@@ -3,6 +3,8 @@
 
 import clsx from "clsx"
 
+import { useT } from "@lib/i18n/provider"
+
 export type SortOptions = "price_asc" | "price_desc" | "created_at"
 
 type SortProductsProps = {
@@ -13,23 +15,23 @@ type SortProductsProps = {
 
 const sortOptions: {
   value: SortOptions
-  label: string
-  description: string
+  labelKey: string
+  descriptionKey: string
 }[] = [
   {
     value: "created_at",
-    label: "Latest arrivals",
-    description: "Recently added",
+    labelKey: "store.sort.latest",
+    descriptionKey: "store.sort.latestDescription",
   },
   {
     value: "price_asc",
-    label: "Price: low to high",
-    description: "Lowest price first",
+    labelKey: "store.sort.priceAsc",
+    descriptionKey: "store.sort.priceAscDescription",
   },
   {
     value: "price_desc",
-    label: "Price: high to low",
-    description: "Highest price first",
+    labelKey: "store.sort.priceDesc",
+    descriptionKey: "store.sort.priceDescDescription",
   },
 ]
 
@@ -38,6 +40,8 @@ const SortProducts = ({
   sortBy,
   setQueryParams,
 }: SortProductsProps) => {
+  const t = useT()
+
   const handleChange = (value: SortOptions) => {
     if (value !== sortBy) {
       setQueryParams("sortBy", value)
@@ -48,17 +52,17 @@ const SortProducts = ({
     <section className="flex flex-col gap-4" data-testid={dataTestId}>
       <div>
         <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-          Display order
+          {t("store.sort.displayOrder")}
         </p>
 
         <h3 className="mt-1 text-sm font-medium tracking-tight text-zinc-200">
-          Sort by
+          {t("store.sort.sortBy")}
         </h3>
       </div>
 
       <div
         role="radiogroup"
-        aria-label="Sort products"
+        aria-label={t("store.sort.sortProducts")}
         className="flex flex-col"
       >
         {sortOptions.map((option, index) => {
@@ -91,11 +95,11 @@ const SortProducts = ({
 
               <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                 <span className="text-xs font-medium">
-                  {option.label}
+                  {t(option.labelKey)}
                 </span>
 
                 <span className="text-[10px] text-zinc-600 transition-colors group-hover:text-zinc-400">
-                  {option.description}
+                  {t(option.descriptionKey)}
                 </span>
               </span>
 

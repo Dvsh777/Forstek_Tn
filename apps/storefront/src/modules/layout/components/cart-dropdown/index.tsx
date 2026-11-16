@@ -9,6 +9,7 @@ import {
 } from "@headlessui/react"
 import { retrieveCart } from "@lib/data/cart"
 import { CART_UPDATED_EVENT } from "@lib/util/cart-events"
+import { useT } from "@lib/i18n/provider"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import DeleteButton from "@modules/common/components/delete-button"
@@ -27,6 +28,7 @@ const CartDropdown = ({
 }: {
   cart?: HttpTypes.StoreCart | null
 }) => {
+  const t = useT()
   const [clientCart, setClientCart] =
     useState<HttpTypes.StoreCart | null>(null)
 
@@ -131,7 +133,7 @@ const CartDropdown = ({
               )}
             </span>
 
-            <span>Cart</span>
+            <span>{t("layout.cart.cart")}</span>
             <span className="font-mono text-[10px] text-zinc-600 transition-colors group-hover:text-zinc-300">
               ({totalItems})
             </span>
@@ -158,10 +160,13 @@ const CartDropdown = ({
             <div className="flex items-center justify-between border-b border-white/[0.09] px-6 py-5">
               <div>
                 <h3 className="text-sm font-semibold tracking-wide">
-                  Your bag
+                  {t("layout.cart.yourBag")}
                 </h3>
                 <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.16em] text-zinc-500">
-                  {totalItems} {totalItems === 1 ? "item" : "items"}
+                  {totalItems}{" "}
+                  {totalItems === 1
+                    ? t("layout.cart.item")
+                    : t("layout.cart.items")}
                 </p>
               </div>
 
@@ -169,7 +174,7 @@ const CartDropdown = ({
                 href="/cart"
                 className="text-[10px] uppercase tracking-widest text-zinc-500 transition-colors hover:text-white"
               >
-                View bag →
+                {t("layout.cart.viewBag")}
               </LocalizedClientLink>
             </div>
 
@@ -235,7 +240,7 @@ const CartDropdown = ({
                               data-testid="cart-item-quantity"
                               data-value={item.quantity}
                             >
-                              Qty: {item.quantity}
+                              {t("layout.cart.qty", { quantity: item.quantity })}
                             </span>
                           </div>
 
@@ -244,7 +249,7 @@ const CartDropdown = ({
                             className="mt-3 w-fit text-[10px] uppercase tracking-widest text-zinc-600 transition-colors hover:text-red-400"
                             data-testid="cart-item-remove-button"
                           >
-                            Remove
+                            {t("layout.cart.remove")}
                           </DeleteButton>
                         </div>
                       </div>
@@ -256,10 +261,10 @@ const CartDropdown = ({
                   <div className="mb-5 flex items-center justify-between">
                     <div>
                       <span className="text-xs font-medium text-zinc-300">
-                        Subtotal
+                        {t("layout.cart.subtotal")}
                       </span>
                       <span className="ml-2 text-[10px] text-zinc-600">
-                        Excl. taxes
+                        {t("layout.cart.exclTaxes")}
                       </span>
                     </div>
 
@@ -279,7 +284,7 @@ const CartDropdown = ({
                     href="/cart"
                     className="flex w-full items-center justify-center gap-3 bg-white px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-black transition-all hover:bg-zinc-200"
                   >
-                    Go to cart
+                    {t("layout.cart.goToCart")}
                     <span aria-hidden="true">→</span>
                   </LocalizedClientLink>
                 </div>
@@ -303,18 +308,18 @@ const CartDropdown = ({
                 </div>
 
                 <h4 className="text-sm font-medium text-white">
-                  Your bag is empty
+                  {t("layout.cart.empty")}
                 </h4>
 
                 <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-zinc-500">
-                  Discover something you'll love and add it to your bag.
+                  {t("layout.cart.emptyHint")}
                 </p>
 
                 <LocalizedClientLink
                   href="/store"
                   className="mt-7 border border-white/20 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-all hover:bg-white hover:text-black"
                 >
-                  Explore products →
+                  {t("layout.cart.explore")}
                 </LocalizedClientLink>
               </div>
             )}

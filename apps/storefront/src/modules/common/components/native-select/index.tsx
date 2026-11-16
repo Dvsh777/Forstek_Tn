@@ -1,3 +1,4 @@
+import { useT } from "@lib/i18n/provider"
 import { ChevronUpDown } from "@medusajs/icons"
 import { clx } from "@modules/common/components/ui"
 import {
@@ -17,9 +18,11 @@ export type NativeSelectProps = {
 
 const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
   (
-    { placeholder = "Select...", defaultValue, className, children, ...props },
+    { placeholder: placeholderProp, defaultValue, className, children, ...props },
     ref
   ) => {
+    const t = useT()
+    const placeholder = placeholderProp ?? t("common.select")
     const innerRef = useRef<HTMLSelectElement>(null)
     const [isPlaceholder, setIsPlaceholder] = useState(false)
 

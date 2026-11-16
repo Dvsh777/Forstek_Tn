@@ -3,6 +3,8 @@
 
 import { useState } from "react"
 
+import { useT } from "@lib/i18n/provider"
+
 import Register from "@modules/account/components/register"
 import Login from "@modules/account/components/login"
 
@@ -12,6 +14,7 @@ export enum LOGIN_VIEW {
 }
 
 const LoginTemplate = () => {
+  const t = useT()
   const [currentView, setCurrentView] = useState(LOGIN_VIEW.SIGN_IN)
 
   const isSignIn = currentView === LOGIN_VIEW.SIGN_IN
@@ -21,17 +24,19 @@ const LoginTemplate = () => {
       <main className="w-full max-w-[460px]">
         <div className="mb-9 border-b border-white/10 pb-8 sm:mb-10">
           <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.25em] text-white/40">
-            FORSTEK / ACCOUNT
+            {t("account.eyebrow")}
           </p>
 
           <h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-            {isSignIn ? "Welcome back." : "Create your account."}
+            {isSignIn
+              ? t("account.loginTemplate.welcome")
+              : t("account.loginTemplate.createTitle")}
           </h1>
 
           <p className="mt-3 max-w-sm text-sm leading-6 text-white/45">
             {isSignIn
-              ? "Sign in to access your account and keep track of your orders."
-              : "Create an account to manage your orders and personal details."}
+              ? t("account.loginTemplate.signInText")
+              : t("account.loginTemplate.createText")}
           </p>
         </div>
 
@@ -43,7 +48,7 @@ const LoginTemplate = () => {
 
         <div className="mt-10 border-t border-white/[0.07] pt-5">
           <p className="text-[10px] uppercase tracking-[0.15em] text-white/30">
-            FORSTEK — Customer Account
+            {t("account.loginTemplate.footer")}
           </p>
         </div>
       </main>

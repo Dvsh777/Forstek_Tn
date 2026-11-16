@@ -6,6 +6,7 @@ import { createPortal } from "react-dom"
 import type { SearchClient } from "instantsearch.js"
 import { Configure, InstantSearch } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
 import StoreHits from "@modules/store/components/store-hits"
 import StoreRefinements from "@modules/store/components/store-refinements"
@@ -14,6 +15,7 @@ import StoreSearchBox from "@modules/store/components/store-search-box"
 const PRODUCT_LIMIT = 12
 
 const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
+  const t = useT()
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -69,7 +71,8 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
             <span className="h-px w-7 bg-white/50" />
 
             <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-zinc-500">
-              FORSTEK <span className="text-zinc-700">/</span> THE STORE
+              FORSTEK <span className="text-zinc-700">/</span>{" "}
+              {t("store.page.eyebrow")}
             </span>
           </div>
 
@@ -79,23 +82,24 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
               data-testid="store-page-title"
               className="text-[clamp(3.2rem,7.2vw,6.4rem)] font-semibold leading-[0.86] tracking-[-0.075em] text-white"
             >
-              All products<span className="text-zinc-600">.</span>
+              {t("store.page.title")}
+              <span className="text-zinc-600">.</span>
             </h1>
 
             <p className="max-w-[310px] text-[13px] leading-[1.8] text-zinc-400 small:pb-1 small:text-sm">
-              Useful finds, everyday essentials and things worth discovering.
-              Take a look around.
+              {t("store.page.intro")}
             </p>
           </div>
 
           {/* Editorial footer */}
           <div className="mt-7 flex items-center justify-between gap-4 border-t border-white/[0.07] pt-4">
             <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-zinc-600 small:text-[9px]">
-              Curated for everyday discovery
+              {t("store.page.curated")}
             </span>
 
             <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-zinc-500 small:text-[9px]">
-              Tunisia <span className="text-zinc-700">/</span> Online
+              {t("layout.menu.tunisia")}{" "}
+              <span className="text-zinc-700">/</span> {t("store.page.online")}
             </span>
           </div>
         </header>
@@ -145,13 +149,13 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
               </span>
 
               <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em]">
-                Filters
+                {t("store.toolbar.filters")}
               </span>
 
               <span className="h-5 w-px bg-white/[0.12]" />
 
               <span className="font-mono text-[9px] uppercase tracking-[0.12em] text-zinc-500 transition-colors duration-300 group-hover:text-zinc-300">
-                Refine
+                {t("store.toolbar.refine")}
               </span>
 
               <svg
@@ -177,7 +181,8 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
               <span className="h-1 w-1 bg-white/40" />
 
               <span className="font-mono text-[8px] uppercase tracking-[0.2em] text-zinc-600 small:text-[9px]">
-                FORSTEK <span className="text-zinc-700">/</span> COLLECTION
+                FORSTEK <span className="text-zinc-700">/</span>{" "}
+                {t("store.page.collection")}
               </span>
             </div>
           </div>
@@ -201,7 +206,7 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
                 {/* Backdrop */}
                 <button
                   type="button"
-                  aria-label="Close filters"
+                  aria-label={t("store.drawer.closeFilters")}
                   tabIndex={filtersOpen ? 0 : -1}
                   onClick={() => setFiltersOpen(false)}
                   className={`fixed inset-0 z-[9998] cursor-default bg-black/75 backdrop-blur-[5px] transition-opacity duration-300 ${
@@ -216,7 +221,7 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
                   id="store-filter-drawer"
                   role="dialog"
                   aria-modal="true"
-                  aria-label="Product filters"
+                  aria-label={t("store.drawer.productFilters")}
                   aria-hidden={!filtersOpen}
                   className={`fixed right-0 top-0 z-[9999] flex h-[100dvh] w-full max-w-[420px] flex-col overflow-hidden border-l border-white/[0.12] bg-[#0b0c0f]/95 shadow-[-30px_0_100px_rgba(0,0,0,0.65)] backdrop-blur-2xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                     filtersOpen
@@ -242,19 +247,20 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
 
                         <span className="font-mono text-[9px] uppercase tracking-[0.24em] text-zinc-500">
                           FORSTEK <span className="text-zinc-700">/</span>{" "}
-                          DISCOVER
+                          {t("store.drawer.discover")}
                         </span>
                       </div>
 
                       <h2 className="text-[26px] font-semibold leading-none tracking-[-0.055em] text-white">
-                        Filters<span className="text-zinc-600">.</span>
+                        {t("store.drawer.title")}
+                        <span className="text-zinc-600">.</span>
                       </h2>
                     </div>
 
                     <button
                       type="button"
                       onClick={() => setFiltersOpen(false)}
-                      aria-label="Close filters"
+                      aria-label={t("store.drawer.closeFilters")}
                       className="group flex h-10 w-10 items-center justify-center border border-white/[0.12] bg-white/[0.035] text-zinc-400 transition-all duration-300 hover:border-white/[0.30] hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
                     >
                       <svg
@@ -277,11 +283,12 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
                   <div className="relative min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 py-6 [scrollbar-color:rgba(255,255,255,0.18)_transparent] [scrollbar-width:thin] small:px-6">
                     <div className="mb-6 flex items-center justify-between border-b border-white/[0.07] pb-4">
                       <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-zinc-500">
-                        Refine your search
+                        {t("store.drawer.refineSearch")}
                       </span>
 
                       <span className="font-mono text-[9px] tracking-[0.12em] text-zinc-700">
-                        01 <span className="text-zinc-800">/</span> FILTERS
+                        01 <span className="text-zinc-800">/</span>{" "}
+                        {t("store.drawer.filtersIndex")}
                       </span>
                     </div>
 
@@ -300,7 +307,7 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
                       onClick={() => setFiltersOpen(false)}
                       className="group flex min-h-12 w-full items-center justify-center gap-3 bg-white px-5 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-black transition-colors duration-300 hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0c0f]"
                     >
-                      Show products
+                      {t("store.drawer.showProducts")}
 
                       <svg
                         aria-hidden="true"

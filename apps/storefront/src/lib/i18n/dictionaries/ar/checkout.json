@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "الدفع"
+  },
+  "shippingAddress": "عنوان الشحن",
+  "billingAddressHeading": "عنوان الفوترة",
+  "billingAddressLabel": "عنوان الفوترة",
+  "edit": "تعديل",
+  "continueToDelivery": "المتابعة إلى التوصيل",
+  "contact": "الاتصال",
+  "billingSame": "عنوان الفوترة والتوصيل متطابقان.",
+  "savedAddressPrompt": "مرحبًا {name}، هل تريد استخدام أحد عناوينك المحفوظة؟",
+  "chooseAddress": "اختر عنوانًا",
+  "fields": {
+    "firstName": "الاسم الأول",
+    "lastName": "اسم العائلة",
+    "address": "العنوان",
+    "company": "الشركة",
+    "postalCode": "الرمز البريدي",
+    "city": "المدينة",
+    "country": "البلد",
+    "province": "الولاية / المحافظة",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "emailTitle": "أدخل عنوان بريد إلكتروني صالحًا."
+  },
+  "billingSameAsShipping": "عنوان الفوترة مطابق لعنوان الشحن",
+  "discount": {
+    "add": "إضافة رمز (رموز) ترويجي",
+    "apply": "تطبيق",
+    "applied": "العروض المطبقة:",
+    "remove": "إزالة رمز الخصم من الطلب"
+  },
+  "delivery": {
+    "title": "التوصيل",
+    "shippingMethod": "طريقة الشحن",
+    "howDeliver": "كيف تريد توصيل طلبك؟",
+    "pickup": "استلام طلبك",
+    "store": "المتجر",
+    "chooseStore": "اختر متجرًا قريبًا منك",
+    "continueToPayment": "المتابعة إلى الدفع",
+    "method": "الطريقة"
+  },
+  "payment": {
+    "creditCard": "بطاقة ائتمان",
+    "manualPayment": "دفع يدوي",
+    "title": "الدفع",
+    "paymentMethod": "طريقة الدفع",
+    "giftCard": "بطاقة هدية",
+    "enterDetails": "أدخل بيانات الدفع",
+    "continueToReview": "المتابعة إلى المراجعة",
+    "paymentDetails": "تفاصيل الدفع",
+    "anotherStep": "ستظهر خطوة أخرى",
+    "enterYourDetails": "أدخل بيانات الدفع الخاصة بك:",
+    "loadError": "تعذّر تحميل طرق الدفع.",
+    "attention": "تنبيه:",
+    "testingOnly": "لأغراض الاختبار فقط.",
+    "selectMethod": "اختر طريقة دفع",
+    "placeOrder": "تأكيد الطلب"
+  },
+  "review": {
+    "title": "المراجعة",
+    "terms": "بالنقر على زر تأكيد الطلب، فإنك تؤكد أنك قرأت وفهمت وقبلت شروط الاستخدام وشروط البيع وسياسة الإرجاع، وتقر بأنك اطلعت على سياسة الخصوصية الخاصة بـ Medusa Store."
+  },
+  "summary": {
+    "inYourCart": "في سلتك"
+  }
+}

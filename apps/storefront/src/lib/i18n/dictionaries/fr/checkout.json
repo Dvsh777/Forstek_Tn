@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "Paiement"
+  },
+  "shippingAddress": "Adresse de livraison",
+  "billingAddressHeading": "Adresse de facturation",
+  "billingAddressLabel": "Adresse de facturation",
+  "edit": "Modifier",
+  "continueToDelivery": "Continuer vers la livraison",
+  "contact": "Contact",
+  "billingSame": "L'adresse de facturation et de livraison sont identiques.",
+  "savedAddressPrompt": "Bonjour {name}, souhaitez-vous utiliser l'une de vos adresses enregistrées ?",
+  "chooseAddress": "Choisir une adresse",
+  "fields": {
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "address": "Adresse",
+    "company": "Société",
+    "postalCode": "Code postal",
+    "city": "Ville",
+    "country": "Pays",
+    "province": "État / Province",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "emailTitle": "Saisissez une adresse e-mail valide."
+  },
+  "billingSameAsShipping": "Adresse de facturation identique à l'adresse de livraison",
+  "discount": {
+    "add": "Ajouter un ou plusieurs codes promo",
+    "apply": "Appliquer",
+    "applied": "Promotion(s) appliquée(s) :",
+    "remove": "Supprimer le code de réduction de la commande"
+  },
+  "delivery": {
+    "title": "Livraison",
+    "shippingMethod": "Mode de livraison",
+    "howDeliver": "Comment souhaitez-vous être livré ?",
+    "pickup": "Retrait de votre commande",
+    "store": "Magasin",
+    "chooseStore": "Choisissez un magasin près de chez vous",
+    "continueToPayment": "Continuer vers le paiement",
+    "method": "Méthode"
+  },
+  "payment": {
+    "creditCard": "Carte bancaire",
+    "manualPayment": "Paiement manuel",
+    "title": "Paiement",
+    "paymentMethod": "Mode de paiement",
+    "giftCard": "Carte cadeau",
+    "enterDetails": "Saisir les informations de paiement",
+    "continueToReview": "Continuer vers la vérification",
+    "paymentDetails": "Détails du paiement",
+    "anotherStep": "Une autre étape apparaîtra",
+    "enterYourDetails": "Saisissez vos informations de paiement :",
+    "loadError": "Impossible de charger les modes de paiement.",
+    "attention": "Attention :",
+    "testingOnly": "À des fins de test uniquement.",
+    "selectMethod": "Sélectionnez un mode de paiement",
+    "placeOrder": "Passer la commande"
+  },
+  "review": {
+    "title": "Vérification",
+    "terms": "En cliquant sur le bouton Passer la commande, vous confirmez avoir lu, compris et accepté nos Conditions d'utilisation, Conditions de vente et Politique de retour, et reconnaissez avoir lu la Politique de confidentialité de Medusa Store."
+  },
+  "summary": {
+    "inYourCart": "Dans votre panier"
+  }
+}

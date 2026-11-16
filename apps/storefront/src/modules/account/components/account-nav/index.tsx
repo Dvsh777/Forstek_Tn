@@ -5,6 +5,7 @@ import { clx } from "@modules/common/components/ui"
 import { useParams, usePathname } from "next/navigation"
 
 import { signout } from "@lib/data/customer"
+import { useT } from "@lib/i18n/provider"
 import { HttpTypes } from "@medusajs/types"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ChevronDown from "@modules/common/icons/chevron-down"
@@ -17,6 +18,7 @@ const AccountNav = ({
 }: {
   customer: HttpTypes.StoreCustomer | null
 }) => {
+  const t = useT()
   const route = usePathname()
   const { countryCode } = useParams() as { countryCode: string }
 
@@ -26,25 +28,25 @@ const AccountNav = ({
 
   const navItems = [
     {
-      label: "Overview",
+      label: t("account.nav.overview"),
       href: "/account",
       icon: <User size={18} />,
       testId: "overview-link",
     },
     {
-      label: "Profile",
+      label: t("account.nav.profile"),
       href: "/account/profile",
       icon: <User size={18} />,
       testId: "profile-link",
     },
     {
-      label: "Addresses",
+      label: t("account.nav.addresses"),
       href: "/account/addresses",
       icon: <MapPin size={18} />,
       testId: "addresses-link",
     },
     {
-      label: "Orders",
+      label: t("account.nav.orders"),
       href: "/account/orders",
       icon: <Package size={18} />,
       testId: "orders-link",
@@ -64,23 +66,25 @@ const AccountNav = ({
             data-testid="account-main-link"
           >
             <ChevronDown className="rotate-90" />
-            Back to account
+            {t("account.nav.back")}
           </LocalizedClientLink>
         ) : (
           <div className="mb-5 border-b border-[#292929] pb-5">
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#777777]">
-              FORSTEK / ACCOUNT
+              {t("account.eyebrow")}
             </span>
             <h2 className="mt-2 text-xl font-semibold text-[#eeeeee]">
-              Hello{customer?.first_name ? `, ${customer.first_name}` : ""}
+              {customer?.first_name
+                ? t("account.nav.helloName", { name: customer.first_name })
+                : t("account.nav.hello")}
             </h2>
             <p className="mt-1 text-xs text-[#777777]">
-              Manage your account and orders.
+              {t("account.nav.manageOrders")}
             </p>
           </div>
         )}
 
-        <nav aria-label="Account navigation">
+        <nav aria-label={t("account.nav.ariaLabel")}>
           <ul className="flex flex-col border-y border-[#292929]">
             {navItems.map((item) => {
               const active = route.split(countryCode)[1] === item.href
@@ -118,7 +122,7 @@ const AccountNav = ({
               >
                 <span className="flex items-center gap-3">
                   <ArrowRightOnRectangle />
-                  Log out
+                  {t("account.nav.logout")}
                 </span>
                 <ChevronDown className="-rotate-90 text-[#666666]" />
               </button>
@@ -135,18 +139,18 @@ const AccountNav = ({
               FORSTEK
             </span>
             <h3 className="mt-2 text-lg font-semibold tracking-tight text-[#eeeeee]">
-              My account
+              {t("account.nav.myAccount")}
             </h3>
             <p className="mt-1 text-xs text-[#777777]">
               {customer?.first_name
-                ? `Welcome back, ${customer.first_name}`
-                : "Manage your account"}
+                ? t("account.nav.welcomeBack", { name: customer.first_name })
+                : t("account.nav.manage")}
             </p>
           </div>
 
-          <nav aria-label="Account navigation">
+          <nav aria-label={t("account.nav.ariaLabel")}>
             <span className="mb-3 block text-[9px] font-medium uppercase tracking-[0.18em] text-[#666666]">
-              Account menu
+              {t("account.nav.menu")}
             </span>
 
             <ul className="flex flex-col gap-1">
@@ -173,7 +177,7 @@ const AccountNav = ({
               data-testid="logout-button"
             >
               <ArrowRightOnRectangle />
-              Log out
+              {t("account.nav.logout")}
             </button>
           </div>
         </div>

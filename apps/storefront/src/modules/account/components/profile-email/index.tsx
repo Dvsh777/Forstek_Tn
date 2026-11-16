@@ -3,6 +3,7 @@
 
 import React, { useEffect, useActionState } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import Input from "@modules/common/components/input"
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
@@ -12,6 +13,7 @@ type MyInformationProps = {
 }
 
 const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
+  const t = useT()
   const [successState, setSuccessState] = React.useState(false)
 
   const updateCustomerEmail = (
@@ -20,7 +22,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   ) => {
     return {
       success: false,
-      error: "Email address changes are not currently supported.",
+      error: t("account.profile.emailUnsupported"),
     }
   }
 
@@ -38,7 +40,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <form action={formAction} className="w-full min-w-0">
       <AccountInfo
-        label="Email"
+        label={t("account.profile.email")}
         currentInfo={customer.email}
         isSuccess={successState}
         isError={!!state.error}
@@ -48,7 +50,7 @@ const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="w-full">
           <Input
-            label="Email"
+            label={t("account.profile.email")}
             name="email"
             type="email"
             autoComplete="email"

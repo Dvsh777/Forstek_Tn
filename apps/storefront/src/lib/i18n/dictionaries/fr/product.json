@@ -1,0 +1,42 @@
+{
+  "actions": {
+    "inStock": "En stock",
+    "outOfStock": "Rupture de stock",
+    "selectVariant": "Sélectionnez une variante",
+    "addToCart": "Ajouter au panier",
+    "selectOptions": "Sélectionner les options",
+    "selectOption": "Sélectionner : {title}",
+    "close": "Fermer"
+  },
+  "price": {
+    "from": "À partir de",
+    "original": "Prix initial :"
+  },
+  "tabs": {
+    "productInformation": "Informations produit",
+    "shippingReturns": "Livraison et retours",
+    "material": "Matière",
+    "countryOfOrigin": "Pays d'origine",
+    "type": "Type",
+    "weight": "Poids",
+    "dimensions": "Dimensions",
+    "fastDelivery": "Livraison rapide",
+    "fastDeliveryText": "Votre colis arrivera sous 3 à 5 jours ouvrables à votre point de retrait ou directement chez vous.",
+    "simpleExchanges": "Échanges simples",
+    "simpleExchangesText": "La taille ne convient pas tout à fait ? Pas de souci, nous échangerons votre produit contre un nouveau.",
+    "easyReturns": "Retours faciles",
+    "easyReturnsText": "Renvoyez simplement votre produit et nous vous rembourserons. Sans poser de questions, nous ferons de notre mieux pour que votre retour se passe sans tracas."
+  },
+  "related": {
+    "title": "Produits similaires",
+    "subtitle": "Ces produits pourraient aussi vous intéresser."
+  },
+  "gallery": {
+    "imageAlt": "Image du produit {number}"
+  },
+  "onboarding": {
+    "created": "Votre produit de démonstration a été créé avec succès ! 🎉",
+    "continueSetupText": "Vous pouvez maintenant poursuivre la configuration de votre boutique dans l'administration.",
+    "continueSetup": "Poursuivre la configuration dans l'administration"
+  }
+}

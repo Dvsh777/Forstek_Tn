@@ -1,9 +1,10 @@
 import React, { useEffect } from "react"
 import { Disclosure } from "@headlessui/react"
-import { Badge, Button, clx } from "@modules/common/components/ui"
+import { Button, clx } from "@modules/common/components/ui"
 import { useFormStatus } from "react-dom"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
+import { useT } from "@lib/i18n/provider"
 
 type AccountInfoProps = {
   label: string
@@ -22,10 +23,12 @@ const AccountInfo = ({
   isSuccess,
   isError,
   clearState,
-  errorMessage = "An error occurred, please try again",
+  errorMessage: errorMessageProp,
   children,
   "data-testid": dataTestid,
 }: AccountInfoProps) => {
+  const t = useT()
+  const errorMessage = errorMessageProp ?? t("account.info.error")
   const { state, close, toggle } = useToggleState()
   const { pending } = useFormStatus()
 
@@ -78,7 +81,7 @@ const AccountInfo = ({
           data-testid="edit-button"
           data-active={state}
         >
-          {state ? "Cancel" : "Edit"}
+          {state ? t("account.info.cancel") : t("account.info.edit")}
         </Button>
       </div>
 
@@ -96,7 +99,7 @@ const AccountInfo = ({
           data-testid="success-message"
         >
           <div className="my-4 border border-emerald-900/50 bg-emerald-950/20 px-3 py-3 text-xs text-emerald-400">
-            {label} updated successfully.
+            {t("account.info.updated", { label })}
           </div>
         </Disclosure.Panel>
       </Disclosure>
@@ -142,7 +145,7 @@ const AccountInfo = ({
                 type="submit"
                 data-testid="save-button"
               >
-                Save changes
+                {t("account.info.save")}
               </Button>
             </div>
           </div>

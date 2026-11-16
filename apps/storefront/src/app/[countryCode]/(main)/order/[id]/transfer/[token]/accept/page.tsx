@@ -1,4 +1,5 @@
 import { acceptTransferRequest } from "@lib/data/orders"
+import { getT } from "@lib/i18n/server"
 import { Heading, Text } from "@modules/common/components/ui"
 import TransferImage from "@modules/order/components/transfer-image"
 
@@ -8,6 +9,7 @@ export default async function TransferPage({
   params: Promise<{ id: string; token: string }>
 }) {
   const { id, token } = await params
+  const t = await getT()
 
   const { success, error } = await acceptTransferRequest(id, token)
 
@@ -18,20 +20,22 @@ export default async function TransferPage({
         {success && (
           <>
             <Heading level="h1" className="text-xl text-zinc-900">
-              Order transfered!
+              {t("order.transfer.acceptedTitle")}
             </Heading>
             <Text className="text-zinc-600">
-              Order {id} has been successfully transfered to the new owner.
+              {t("order.transfer.acceptedText", { id })}
             </Text>
           </>
         )}
         {!success && (
           <>
             <Text className="text-zinc-600">
-              There was an error accepting the transfer. Please try again.
+              {t("order.transfer.acceptError")}
             </Text>
             {error && (
-              <Text className="text-red-500">Error message: {error}</Text>
+              <Text className="text-red-500">
+                {t("order.transfer.errorMessage", { error })}
+              </Text>
             )}
           </>
         )}

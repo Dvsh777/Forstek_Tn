@@ -4,7 +4,8 @@ import React, { useContext, type JSX } from "react"
 
 import Radio from "@modules/common/components/radio"
 
-import { isManual } from "@lib/constants"
+import { getPaymentTitle, isManual } from "@lib/constants"
+import { useT } from "@lib/i18n/provider"
 import SkeletonCardDetails from "@modules/skeletons/components/skeleton-card-details"
 import { PaymentElement } from "@stripe/react-stripe-js"
 import PaymentTest from "../payment-test"
@@ -25,6 +26,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
   disabled = false,
   children,
 }) => {
+  const t = useT()
   const isDevelopment = process.env.NODE_ENV === "development"
 
   return (
@@ -44,7 +46,7 @@ const PaymentContainer: React.FC<PaymentContainerProps> = ({
         <div className="flex items-center gap-x-4">
           <Radio checked={selectedPaymentOptionId === paymentProviderId} />
           <Text className="text-base-regular">
-            {paymentInfoMap[paymentProviderId]?.title || paymentProviderId}
+            {getPaymentTitle(paymentProviderId, t)}
           </Text>
           {isManual(paymentProviderId) && isDevelopment && (
             <PaymentTest className="hidden small:block" />
@@ -75,6 +77,7 @@ export const StripePaymentContainer = ({
   setError: (error: string | null) => void
   setPaymentComplete: (complete: boolean) => void
 }) => {
+  const t = useT()
   const stripeReady = useContext(StripeContext)
 
   return (
@@ -88,7 +91,7 @@ export const StripePaymentContainer = ({
         (stripeReady ? (
           <div className="my-4 transition-all duration-150 ease-in-out">
             <Text className="txt-medium-plus text-ui-fg-base mb-1">
-              Enter your payment details:
+              {t("checkout.payment.enterYourDetails")}
             </Text>
             <PaymentElement
               options={{ layout: "accordion" }}
@@ -103,7 +106,7 @@ export const StripePaymentContainer = ({
               onLoadError={(e) => {
                 setPaymentComplete(false)
                 setError(
-                  e.error?.message ?? "Could not load the payment methods."
+                  e.error?.message ?? t("checkout.payment.loadError")
                 )
               }}
             />

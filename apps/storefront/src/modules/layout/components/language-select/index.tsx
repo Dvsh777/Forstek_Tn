@@ -14,6 +14,13 @@ import ReactCountryFlag from "react-country-flag"
 import { StateType } from "@lib/hooks/use-toggle-state"
 import { updateLocale } from "@lib/data/locale-actions"
 import { Locale } from "@lib/data/locales"
+import {
+  LANGUAGE_FLAGS,
+  LANGUAGE_LABELS,
+  SUPPORTED_LANGUAGES,
+  resolveLanguage,
+} from "@lib/i18n/config"
+import { useT } from "@lib/i18n/provider"
 
 type LanguageOption = {
   code: string
@@ -22,50 +29,17 @@ type LanguageOption = {
   countryCode: string
 }
 
-const getCountryCodeFromLocale = (localeCode: string): string => {
-  try {
-    const locale = new Intl.Locale(localeCode)
-    if (locale.region) {
-      return locale.region.toUpperCase()
-    }
-    const maximized = locale.maximize()
-    return maximized.region?.toUpperCase() ?? localeCode.toUpperCase()
-  } catch {
-    const parts = localeCode.split(/[-_]/)
-    return parts.length > 1 ? parts[1].toUpperCase() : parts[0].toUpperCase()
-  }
-}
-
 type LanguageSelectProps = {
   toggleState: StateType
-  locales: Locale[]
+  locales: Locale[] | null
   currentLocale: string | null
 }
 
-/**
- * Gets the localized display name for a language code using Intl API.
- * Falls back to the provided name if Intl is unavailable.
- */
-const getLocalizedLanguageName = (
-  code: string,
-  fallbackName: string,
-  displayLocale: string = "en-US"
-): string => {
-  try {
-    const displayNames = new Intl.DisplayNames([displayLocale], {
-      type: "language",
-    })
-    return displayNames.of(code) ?? fallbackName
-  } catch {
-    return fallbackName
-  }
-}
-
 const DEFAULT_OPTION: LanguageOption = {
-  code: "",
-  name: "Default",
-  localizedName: "Default",
-  countryCode: "",
+  code: "en",
+  name: LANGUAGE_LABELS.en,
+  localizedName: LANGUAGE_LABELS.en,
+  countryCode: LANGUAGE_FLAGS.en,
 }
 
 const LanguageSelect = ({
@@ -73,36 +47,38 @@ const LanguageSelect = ({
   locales,
   currentLocale,
 }: LanguageSelectProps) => {
+  const t = useT()
   const [current, setCurrent] = useState<LanguageOption | undefined>(undefined)
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
   const { state, close } = toggleState
 
+  // English / Francais / Arabic are always offered. When the Medusa backend
+  // defines a matching locale (e.g. "fr-FR"), its exact code is used so the
+  // cart and product requests keep receiving the configured locale code.
   const options = useMemo(() => {
-    const localeOptions = locales.map((locale) => ({
-      code: locale.code,
-      name: locale.name,
-      localizedName: getLocalizedLanguageName(
-        locale.code,
-        locale.name,
-        currentLocale ?? "en-US"
-      ),
-      countryCode: getCountryCodeFromLocale(locale.code),
-    }))
-    return [DEFAULT_OPTION, ...localeOptions]
-  }, [locales, currentLocale])
+    return SUPPORTED_LANGUAGES.map((language) => {
+      const backendLocale = locales?.find(
+        (locale) => resolveLanguage(locale.code) === language
+      )
+      return {
+        code: backendLocale?.code ?? language,
+        name: LANGUAGE_LABELS[language],
+        localizedName: LANGUAGE_LABELS[language],
+        countryCode: LANGUAGE_FLAGS[language],
+      }
+    })
+  }, [locales])
+
+  const currentLanguage = resolveLanguage(currentLocale)
 
   useEffect(() => {
-    if (currentLocale) {
-      const option = options.find(
-        (o) => o.code.toLowerCase() === currentLocale.toLowerCase()
-      )
-      setCurrent(option ?? DEFAULT_OPTION)
-    } else {
-      setCurrent(DEFAULT_OPTION)
-    }
-  }, [options, currentLocale])
+    const option = options.find(
+      (o) => resolveLanguage(o.code) === currentLanguage
+    )
+    setCurrent(option ?? DEFAULT_OPTION)
+  }, [options, currentLanguage])
 
   const handleChange = (option: LanguageOption) => {
     startTransition(async () => {
@@ -118,21 +94,17 @@ const LanguageSelect = ({
         as="span"
         onChange={handleChange}
         defaultValue={
-          currentLocale
-            ? options.find(
-                (o) => o.code.toLowerCase() === currentLocale.toLowerCase()
-              ) ?? DEFAULT_OPTION
-            : DEFAULT_OPTION
+          options.find((o) => resolveLanguage(o.code) === currentLanguage) ??
+          DEFAULT_OPTION
         }
         disabled={isPending}
       >
         <ListboxButton className="py-1 w-full">
           <div className="txt-compact-small flex items-start gap-x-2">
-            <span>Language:</span>
+            <span>{t("layout.language.label")}</span>
             {current && (
               <span className="txt-compact-small flex items-center gap-x-2">
                 {current.countryCode && (
-                  /* @ts-ignore */
                   <ReactCountryFlag
                     svg
                     style={{
@@ -166,7 +138,6 @@ const LanguageSelect = ({
                   className="py-2 hover:bg-gray-200 px-3 cursor-pointer flex items-center gap-x-2"
                 >
                   {o.countryCode ? (
-                    /* @ts-ignore */
                     <ReactCountryFlag
                       svg
                       style={{

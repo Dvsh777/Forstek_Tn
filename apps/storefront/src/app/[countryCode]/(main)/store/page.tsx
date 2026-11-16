@@ -2,11 +2,16 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 import { getRegion } from "@lib/data/regions"
+import { getT } from "@lib/i18n/server"
 import StoreTemplate from "@modules/store/templates"
 
-export const metadata: Metadata = {
-  title: "Store",
-  description: "Explore all of our products.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT()
+
+  return {
+    title: t("store.meta.title"),
+    description: t("store.meta.description"),
+  }
 }
 
 export default async function StorePage(props: {

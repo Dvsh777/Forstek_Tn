@@ -1,6 +1,7 @@
 
 import { listProductsWithSort } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import { getT } from "@lib/i18n/server"
 import { OptionValueIds } from "@lib/util/product-option-filters"
 import ProductPreview from "@modules/products/components/product-preview"
 import { Pagination } from "@modules/store/components/pagination"
@@ -54,6 +55,7 @@ export default async function PaginatedProducts({
   }
 
   const region = await getRegion(countryCode)
+  const t = await getT()
 
   if (!region) {
     return null
@@ -97,13 +99,13 @@ export default async function PaginatedProducts({
       {products.length === 0 && (
         <div className="flex min-h-[300px] flex-col items-center justify-center border border-white/[0.09] bg-white/[0.015] px-6 py-16 text-center">
           <span className="mb-5 font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-600">
-            No results found
+            {t("store.empty.noResults")}
           </span>
           <h2 className="text-2xl font-semibold tracking-tight text-white">
-            Nothing here. Yet.
+            {t("store.empty.nothingHere")}
           </h2>
           <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-500">
-            Try changing your filters or search for something else.
+            {t("store.empty.tryChanging")}
           </p>
         </div>
       )}
@@ -113,7 +115,7 @@ export default async function PaginatedProducts({
         <div className="mt-14 border-t border-white/[0.09] pt-7 small:mt-16">
           <div className="mb-5 flex items-center justify-between">
             <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
-              Keep exploring
+              {t("store.empty.keepExploring")}
             </span>
             <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500">
               {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}

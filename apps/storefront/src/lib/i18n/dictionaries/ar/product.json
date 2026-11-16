@@ -1,0 +1,42 @@
+{
+  "actions": {
+    "inStock": "متوفر",
+    "outOfStock": "غير متوفر",
+    "selectVariant": "اختر النوع",
+    "addToCart": "أضف إلى السلة",
+    "selectOptions": "اختر الخيارات",
+    "selectOption": "اختر {title}",
+    "close": "إغلاق"
+  },
+  "price": {
+    "from": "ابتداءً من",
+    "original": "السعر الأصلي:"
+  },
+  "tabs": {
+    "productInformation": "معلومات المنتج",
+    "shippingReturns": "الشحن والإرجاع",
+    "material": "المادة",
+    "countryOfOrigin": "بلد المنشأ",
+    "type": "النوع",
+    "weight": "الوزن",
+    "dimensions": "الأبعاد",
+    "fastDelivery": "توصيل سريع",
+    "fastDeliveryText": "ستصل طردك خلال 3 إلى 5 أيام عمل إلى نقطة الاستلام أو إلى منزلك مباشرة.",
+    "simpleExchanges": "استبدال سهل",
+    "simpleExchangesText": "المقاس غير مناسب تمامًا؟ لا مشكلة، سنستبدل منتجك بآخر جديد.",
+    "easyReturns": "إرجاع سهل",
+    "easyReturnsText": "أعد المنتج وسنردّ لك أموالك دون أي أسئلة. سنبذل قصارى جهدنا لتكون عملية الإرجاع سلسة."
+  },
+  "related": {
+    "title": "منتجات ذات صلة",
+    "subtitle": "قد ترغب أيضًا في الاطلاع على هذه المنتجات."
+  },
+  "gallery": {
+    "imageAlt": "صورة المنتج {number}"
+  },
+  "onboarding": {
+    "created": "تم إنشاء منتجك التجريبي بنجاح! 🎉",
+    "continueSetupText": "يمكنك الآن متابعة إعداد متجرك من لوحة الإدارة.",
+    "continueSetup": "متابعة الإعداد في لوحة الإدارة"
+  }
+}

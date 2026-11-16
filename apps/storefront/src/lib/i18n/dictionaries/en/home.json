@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "kicker": "The new way to shop",
+    "titleLine1": "More than",
+    "titleLine2": "just shopping.",
+    "intro": "Your everyday essentials, discoveries and next favorites. All in one place, delivered across Tunisia.",
+    "explore": "Explore our collections",
+    "findCategory": "Find your category",
+    "discover": "Discover",
+    "destination": "A destination for everyday discoveries"
+  },
+  "collectionsAria": "Collections",
+  "viewAll": "View all",
+  "valueProps": {
+    "heading": "Why shop with us",
+    "deliveryTitle": "Delivery across Tunisia",
+    "deliveryDescription": "Orders ship to your door, wherever you are in the country.",
+    "whatsappTitle": "Order on WhatsApp",
+    "whatsappDescription": "Open any product, pick your options and send the order in one tap.",
+    "returnsTitle": "Return policy",
+    "returnsDescription": "Return windows and conditions are set out on our returns page.",
+    "pricesTitle": "Prices in {currency}",
+    "pricesDescription": "See what you pay in local currency, with no conversion surprises."
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "unavailable": "Les détails de la politique pour cette région n'ont pas encore été publiés.",
+  "placeholder": "Ceci est un contenu provisoire du modèle Medusa. Remplacez-le par le texte de votre boutique avant le lancement.",
+  "free": "Gratuit",
+  "shippingRate": "Frais de livraison",
+  "processingTime": "Délai de traitement",
+  "deliveryTime": "Délai de livraison",
+  "businessDays": "{range} jours ouvrés",
+  "afterDispatch": "{range} jours ouvrés après l'expédition",
+  "contact": {
+    "title": "Contact",
+    "description": "Comment contacter {store}.",
+    "text": "Une question sur une commande, la livraison ou un retour ? Contactez le service client de {store} en indiquant votre numéro de commande."
+  },
+  "privacy": {
+    "title": "Politique de confidentialité",
+    "description": "Comment {store} collecte et utilise les données personnelles.",
+    "p1": "{store} collecte les informations que vous fournissez lors du paiement, telles que votre nom, votre adresse e-mail et votre adresse de livraison, afin de traiter et de livrer votre commande.",
+    "p2": "Les informations de paiement sont gérées par notre prestataire de paiement et ne sont pas conservées par la boutique. Des cookies sont utilisés pour conserver votre panier et votre session de connexion."
+  },
+  "returns": {
+    "title": "Politique de retour",
+    "description": "Comment retourner des articles et obtenir un remboursement.",
+    "p1": "Vous pouvez retourner des articles dans un délai de {days} jours après la livraison. Les articles sont retournés par courrier.",
+    "free": "Les frais de retour sont gratuits.",
+    "paid": "Les frais de retour sont à la charge du client."
+  },
+  "shipping": {
+    "title": "Informations de livraison",
+    "description": "Tarifs de livraison et délais.",
+    "intro": "Les commandes vers {country} sont expédiées selon les tarifs et délais suivants.",
+    "note": "Les modes de livraison disponibles et les coûts définitifs sont affichés lors du paiement."
+  },
+  "terms": {
+    "title": "Conditions de service",
+    "description": "Conditions applicables aux achats effectués auprès de {store}.",
+    "p1": "En passant une commande auprès de {store}, vous acceptez ces conditions. Les prix, la disponibilité des produits et les options de livraison sont indiqués sur les pages produits et lors du paiement, et peuvent changer sans préavis.",
+    "p2": "Les commandes sont confirmées par e-mail une fois le paiement reçu. Les retours et remboursements sont traités conformément à notre politique de retour."
+  },
+  "search": {
+    "title": "Recherche",
+    "results": "Résultats de recherche pour « {query} »",
+    "countOne": "{count} produit trouvé",
+    "countOther": "{count} produits trouvés",
+    "none": "Aucun produit ne correspond à votre recherche. Essayez un autre mot-clé."
+  }
+}

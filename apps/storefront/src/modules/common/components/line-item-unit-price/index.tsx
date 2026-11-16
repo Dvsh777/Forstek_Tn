@@ -1,3 +1,6 @@
+"use client"
+
+import { useT } from "@lib/i18n/provider"
 import { convertToLocale } from "@lib/util/money"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@modules/common/components/ui"
@@ -13,6 +16,7 @@ const LineItemUnitPrice = ({
   style = "default",
   currencyCode,
 }: LineItemUnitPriceProps) => {
+  const t = useT()
   const total = item.total ?? 0
   const original_total = item.original_total ?? 0
   const hasReducedPrice = total < original_total
@@ -27,7 +31,9 @@ const LineItemUnitPrice = ({
         <>
           <p>
             {style === "default" && (
-              <span className="text-ui-fg-muted">Original: </span>
+              <span className="text-ui-fg-muted">
+                {t("product.price.original")}{" "}
+              </span>
             )}
             <span
               className="line-through"

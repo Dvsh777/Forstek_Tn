@@ -15,6 +15,7 @@ import {
   useSearchBox,
 } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import useSearchSettled from "@lib/hooks/use-search-settled"
 import useToggleState from "@lib/hooks/use-toggle-state"
 import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
@@ -26,6 +27,7 @@ const HITS_PER_PAGE = 12
 const DEBOUNCE_MS = 250
 
 const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
+  const t = useT()
   const timer = useRef<number | undefined>(undefined)
 
   const queryHook = useCallback(
@@ -62,7 +64,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
           htmlFor="forstek-search-input"
           className="mb-3 block font-mono text-[9px] uppercase tracking-[0.18em] text-zinc-600"
         >
-          What are you looking for?
+          {t("layout.search.whatAreYouLookingFor")}
         </label>
 
         <div className="group flex items-center gap-3 border-b border-white/20 pb-4 transition-colors focus-within:border-white">
@@ -77,8 +79,8 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
               setInputValue(value)
               refine(value)
             }}
-            placeholder="Search products..."
-            aria-label="Search products"
+            placeholder={t("layout.search.placeholder")}
+            aria-label={t("layout.search.ariaLabel")}
             autoFocus
             className="w-full bg-transparent text-[15px] font-medium text-white outline-none placeholder:text-zinc-700"
             data-testid="search-input"
@@ -93,7 +95,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
               }}
               className="shrink-0 text-[10px] uppercase tracking-widest text-zinc-600 transition-colors hover:text-white"
             >
-              Clear
+              {t("layout.search.clear")}
             </button>
           )}
         </div>
@@ -102,12 +104,14 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
       {/* Results heading */}
       <div className="flex items-center justify-between border-y border-white/[0.07] px-6 py-3">
         <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-zinc-500">
-          {hasInput ? "Search results" : "Product discovery"}
+          {hasInput
+            ? t("layout.search.searchResults")
+            : t("layout.search.productDiscovery")}
         </span>
 
         {hasResults && isSettled && (
           <span className="font-mono text-[9px] text-zinc-600">
-            {items.length} RESULTS
+            {t("layout.search.resultsCount", { count: items.length })}
           </span>
         )}
       </div>
@@ -124,11 +128,11 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             </div>
 
             <p className="text-sm font-medium text-zinc-300">
-              Find something interesting.
+              {t("layout.search.findSomething")}
             </p>
 
             <p className="mt-2 max-w-[220px] text-xs leading-relaxed text-zinc-600">
-              Search our collection of clothing, sports nutrition, electronics and home essentials.
+              {t("layout.search.hint")}
             </p>
           </div>
         ) : status === "error" ? (
@@ -137,10 +141,10 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             data-testid="search-error"
           >
             <p className="text-sm text-red-400">
-              Couldn't search products.
+              {t("layout.search.couldntSearch")}
             </p>
             <p className="mt-2 break-words text-xs text-zinc-600">
-              {error?.message || "Please try again."}
+              {error?.message || t("layout.search.tryAgain")}
             </p>
           </div>
         ) : !isSettled || isPending ? (
@@ -150,7 +154,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
           >
             <span className="h-4 w-4 animate-spin border border-white/20 border-t-white" />
             <span className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-              Searching
+              {t("layout.search.searching")}
             </span>
           </div>
         ) : hasResults ? (
@@ -169,11 +173,11 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
             data-testid="search-no-results"
           >
             <p className="text-sm font-medium text-zinc-300">
-              No products found.
+              {t("layout.search.noProducts")}
             </p>
 
             <p className="mt-2 break-words text-xs text-zinc-600">
-              No results for "{query}". Try another search.
+              {t("layout.search.noResultsFor", { query })}
             </p>
           </div>
         )}
@@ -183,6 +187,7 @@ const SearchPanel = ({ onNavigate }: { onNavigate: () => void }) => {
 }
 
 const Search = () => {
+  const t = useT()
   const { state: isOpen, open, close } = useToggleState()
 
   const { countryCode } = useParams<{ countryCode: string }>()
@@ -196,8 +201,8 @@ const Search = () => {
           event.preventDefault()
           open()
         }}
-        aria-label="Search products"
-        title="Search products"
+        aria-label={t("layout.search.ariaLabel")}
+        title={t("layout.search.ariaLabel")}
         className="group flex h-10 w-10 items-center justify-center border border-transparent text-zinc-400 transition-all duration-200 hover:border-white/[0.12] hover:bg-white/[0.04] hover:text-white"
         data-testid="nav-search-button"
       >

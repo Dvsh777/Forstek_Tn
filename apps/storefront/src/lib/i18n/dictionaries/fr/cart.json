@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Panier",
+    "description": "Consultez votre panier"
+  },
+  "title": "Panier",
+  "item": "Article",
+  "quantity": "Quantité",
+  "price": "Prix",
+  "total": "Total",
+  "summary": "Récapitulatif",
+  "goToCheckout": "Passer à la caisse",
+  "quantityFor": "Quantité pour {title}",
+  "updating": "Mise à jour de la quantité",
+  "updateError": "Impossible de mettre à jour cet article. Réessayez.",
+  "empty": {
+    "eyebrow": "FORSTEK / VOTRE PANIER",
+    "title": "Rien ici. Pour l'instant.",
+    "text": "Votre prochain coup de cœur vous attend peut-être. Explorez la collection et trouvez quelque chose qui mérite d'être ajouté.",
+    "explore": "Explorer la collection",
+    "footer": "FORSTEK — Trouvez votre prochain coup de cœur"
+  },
+  "signIn": {
+    "eyebrow": "FORSTEK / VOTRE COMPTE",
+    "title": "Déjà client chez nous ?",
+    "text": "Connectez-vous pour reprendre là où vous vous étiez arrêté et garder vos commandes au même endroit.",
+    "button": "Se connecter"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "Le panier auquel vous essayez d'accéder n'existe pas. Effacez vos cookies et réessayez.",
+    "home": "Aller à la page d'accueil"
+  }
+}

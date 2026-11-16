@@ -1,25 +1,33 @@
 
 "use client"
 
+import { useT } from "@lib/i18n/provider"
 import OrderCard from "../order-card"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 
 const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
+  const t = useT()
+
   if (orders?.length) {
     return (
       <div className="flex flex-col gap-4 w-full min-w-0">
         <div className="flex items-end justify-between border-b border-white/10 pb-5">
           <div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mb-2">
-              FORSTEK / ACCOUNT
+              {t("account.eyebrow")}
             </p>
             <h1 className="text-2xl font-semibold tracking-tight text-white">
-              Your orders
+              {t("account.orders.yourOrders")}
             </h1>
           </div>
           <span className="text-xs text-white/40">
-            {orders.length} {orders.length === 1 ? "order" : "orders"}
+            {t(
+              orders.length === 1
+                ? "account.orders.orderOne"
+                : "account.orders.orderOther",
+              { count: orders.length }
+            )}
           </span>
         </div>
 
@@ -38,14 +46,13 @@ const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
       data-testid="no-orders-container"
     >
       <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mb-4">
-        FORSTEK / ACCOUNT
+        {t("account.eyebrow")}
       </p>
       <h2 className="text-xl sm:text-2xl font-semibold tracking-tight text-white">
-        No orders yet
+        {t("account.orders.noneTitle")}
       </h2>
       <p className="text-sm text-white/45 mt-3 max-w-sm mx-auto">
-        You haven&apos;t placed an order yet. Once you do, you&apos;ll find its
-        details and status here.
+        {t("account.orders.noneText")}
       </p>
       <div className="mt-7">
         <LocalizedClientLink
@@ -53,7 +60,7 @@ const OrderOverview = ({ orders }: { orders: HttpTypes.StoreOrder[] }) => {
           className="inline-flex items-center justify-center bg-white px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black hover:bg-white/85 transition-colors"
           data-testid="continue-shopping-button"
         >
-          Explore the store
+          {t("account.orders.explore")}
         </LocalizedClientLink>
       </div>
     </div>

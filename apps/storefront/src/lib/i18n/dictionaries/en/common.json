@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "homeTitle": "FORSTEK | Clothing, sports nutrition, gadgets and home",
+    "homeDescription": "Shop clothing, sports and nutrition, electronics and gadgets, and lifestyle and home products. Prices in TND.",
+    "categoryDescription": "{title} category.",
+    "collectionDescription": "{title} collection"
+  },
+  "totals": {
+    "subtotalExcl": "Subtotal (excl. shipping and taxes)",
+    "shipping": "Shipping",
+    "discount": "Discount",
+    "taxes": "Taxes",
+    "total": "Total"
+  },
+  "variant": "Variant: {title}",
+  "select": "Select...",
+  "poweredBy": "Powered by",
+  "notFound": {
+    "metaDescription": "Something went wrong",
+    "title": "Page not found",
+    "text": "The page you tried to access does not exist.",
+    "home": "Go to frontpage"
+  }
+}

@@ -5,6 +5,7 @@ import {
   updateCustomerAddress,
 } from "@lib/data/customer"
 import useToggleState from "@lib/hooks/use-toggle-state"
+import { useT } from "@lib/i18n/provider"
 import { PencilSquare as Edit, Trash } from "@medusajs/icons"
 import { HttpTypes } from "@medusajs/types"
 import CountrySelect from "@modules/checkout/components/country-select"
@@ -26,6 +27,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
   address,
   isActive = false,
 }) => {
+  const t = useT()
   const [removing, setRemoving] = useState(false)
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
@@ -78,7 +80,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
           <div className="mb-4 flex items-start justify-between gap-3">
             <div className="min-w-0">
               <span className="mb-2 block text-[10px] font-medium uppercase tracking-[0.2em] text-[#777777]">
-                Saved address
+                {t("account.addresses.savedLabel")}
               </span>
 
               <Heading
@@ -91,7 +93,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
 
             {isActive && (
               <span className="shrink-0 border border-[#454545] px-2 py-1 text-[9px] font-medium uppercase tracking-[0.12em] text-[#cccccc]">
-                Active
+                {t("account.addresses.active")}
               </span>
             )}
           </div>
@@ -136,7 +138,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             data-testid="address-edit-button"
           >
             <Edit className="h-4 w-4" />
-            Edit address
+            {t("account.addresses.editAddress")}
           </button>
 
           <button
@@ -151,7 +153,9 @@ const EditAddress: React.FC<EditAddressProps> = ({
             ) : (
               <Trash className="h-4 w-4" />
             )}
-            {removing ? "Removing..." : "Remove"}
+            {removing
+              ? t("account.addresses.removing")
+              : t("account.addresses.remove")}
           </button>
         </div>
       </div>
@@ -160,11 +164,11 @@ const EditAddress: React.FC<EditAddressProps> = ({
         <Modal.Title>
           <div className="mb-2">
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#888888]">
-              Address book
+              {t("account.addresses.book")}
             </span>
 
             <Heading className="mt-1 text-[#eeeeee]">
-              Edit address
+              {t("account.addresses.editTitle")}
             </Heading>
           </div>
         </Modal.Title>
@@ -176,7 +180,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
             <div className="grid grid-cols-1 gap-y-3">
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Input
-                  label="First name"
+                  label={t("checkout.fields.firstName")}
                   name="first_name"
                   required
                   autoComplete="given-name"
@@ -185,7 +189,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 />
 
                 <Input
-                  label="Last name"
+                  label={t("checkout.fields.lastName")}
                   name="last_name"
                   required
                   autoComplete="family-name"
@@ -195,7 +199,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               </div>
 
               <Input
-                label="Company"
+                label={t("checkout.fields.company")}
                 name="company"
                 autoComplete="organization"
                 defaultValue={address.company || undefined}
@@ -203,7 +207,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
 
               <Input
-                label="Address"
+                label={t("checkout.fields.address")}
                 name="address_1"
                 required
                 autoComplete="address-line1"
@@ -212,7 +216,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
 
               <Input
-                label="Apartment, suite, etc."
+                label={t("account.addresses.apartment")}
                 name="address_2"
                 autoComplete="address-line2"
                 defaultValue={address.address_2 || undefined}
@@ -221,7 +225,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-[140px_1fr]">
                 <Input
-                  label="Postal code"
+                  label={t("checkout.fields.postalCode")}
                   name="postal_code"
                   required
                   autoComplete="postal-code"
@@ -230,7 +234,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 />
 
                 <Input
-                  label="City"
+                  label={t("checkout.fields.city")}
                   name="city"
                   required
                   autoComplete="locality"
@@ -240,7 +244,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               </div>
 
               <Input
-                label="Province / State"
+                label={t("account.addresses.provinceState")}
                 name="province"
                 autoComplete="address-level1"
                 defaultValue={address.province || undefined}
@@ -257,7 +261,7 @@ const EditAddress: React.FC<EditAddressProps> = ({
               />
 
               <Input
-                label="Phone"
+                label={t("checkout.fields.phone")}
                 name="phone"
                 autoComplete="tel"
                 defaultValue={address.phone || undefined}
@@ -281,14 +285,14 @@ const EditAddress: React.FC<EditAddressProps> = ({
                 className="h-10 w-full border border-[#383838] bg-transparent text-[#cccccc] hover:bg-[#222222] sm:w-auto"
                 data-testid="cancel-button"
               >
-                Cancel
+                {t("account.addresses.cancel")}
               </Button>
 
               <SubmitButton
                 data-testid="save-button"
                 className="h-10 w-full sm:w-auto"
               >
-                Save changes
+                {t("account.addresses.saveChanges")}
               </SubmitButton>
             </div>
           </Modal.Footer>

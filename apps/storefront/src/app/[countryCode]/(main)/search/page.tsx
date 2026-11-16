@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 
 import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
+import { getT } from "@lib/i18n/server"
 import ProductPreview from "@modules/products/components/product-preview"
 import SearchForm from "@modules/search/components/search-form"
 
@@ -18,13 +19,17 @@ const getQuery = (q?: string | string[]) =>
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const query = getQuery((await props.searchParams).q)
+  const t = await getT()
   return {
-    title: query ? `Search results for "${query}"` : "Search",
+    title: query
+      ? t("policies.search.results", { query })
+      : t("policies.search.title"),
     robots: { index: false, follow: true },
   }
 }
 
 export default async function SearchPage(props: Props) {
+  const t = await getT()
   const { countryCode } = await props.params
   const query = getQuery((await props.searchParams).q)
 
@@ -43,17 +48,24 @@ export default async function SearchPage(props: Props) {
   return (
     <div className="content-container py-6" data-testid="search-container">
       <h1 className="text-2xl-semi mb-6">
-        {query ? `Search results for "${query}"` : "Search"}
+        {query
+          ? t("policies.search.results", { query })
+          : t("policies.search.title")}
       </h1>
       <SearchForm countryCode={countryCode} defaultValue={query} className="mb-8 max-w-xl" />
       {query && (
         <p className="text-small-regular text-ui-fg-subtle mb-6">
-          {response.count} {response.count === 1 ? "product" : "products"} found
+          {t(
+            response.count === 1
+              ? "policies.search.countOne"
+              : "policies.search.countOther",
+            { count: response.count }
+          )}
         </p>
       )}
       {query && response.products.length === 0 ? (
         <p className="text-ui-fg-subtle">
-          No products match your search. Try a different keyword.
+          {t("policies.search.none")}
         </p>
       ) : (
         <ul

@@ -2,6 +2,7 @@
 "use client"
 
 import React from "react"
+import { useT } from "@lib/i18n/provider"
 import Input from "@modules/common/components/input"
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
@@ -13,6 +14,7 @@ type MyInformationProps = {
 const ProfilePassword: React.FC<MyInformationProps> = ({
   customer: _customer,
 }) => {
+  const t = useT()
   const [successState, setSuccessState] = React.useState(false)
 
   // Password updates are not implemented in the current backend.
@@ -29,9 +31,9 @@ const ProfilePassword: React.FC<MyInformationProps> = ({
       className="w-full min-w-0"
     >
       <AccountInfo
-        label="Password"
+        label={t("account.profile.password")}
         currentInfo={
-          <span>The password is not shown for security reasons</span>
+          <span>{t("account.profile.passwordHidden")}</span>
         }
         isSuccess={successState}
         isError={false}
@@ -41,7 +43,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
           <Input
-            label="Old password"
+            label={t("account.profile.oldPassword")}
             name="old_password"
             required
             type="password"
@@ -50,7 +52,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({
           />
 
           <Input
-            label="New password"
+            label={t("account.profile.newPassword")}
             name="new_password"
             required
             type="password"
@@ -59,7 +61,7 @@ const ProfilePassword: React.FC<MyInformationProps> = ({
           />
 
           <Input
-            label="Confirm password"
+            label={t("account.profile.confirmPassword")}
             name="confirm_password"
             required
             type="password"

@@ -1,0 +1,84 @@
+{
+  "menu": {
+    "open": "Menu",
+    "close": "Fermer le menu",
+    "navigation": "Navigation",
+    "preferences": "Préférences",
+    "tunisia": "Tunisie"
+  },
+  "links": {
+    "home": "Accueil",
+    "store": "Boutique",
+    "account": "Compte",
+    "cart": "Panier"
+  },
+  "language": {
+    "label": "Langue :"
+  },
+  "country": {
+    "shippingTo": "Livraison vers :"
+  },
+  "nav": {
+    "account": "Compte",
+    "cartEmpty": "Panier (0)"
+  },
+  "checkout": {
+    "backToCart": "Retour au panier",
+    "back": "Retour"
+  },
+  "cart": {
+    "cart": "Panier",
+    "yourBag": "Votre panier",
+    "item": "article",
+    "items": "articles",
+    "viewBag": "Voir le panier →",
+    "qty": "Qté : {quantity}",
+    "remove": "Retirer",
+    "subtotal": "Sous-total",
+    "exclTaxes": "Hors taxes",
+    "goToCart": "Aller au panier",
+    "empty": "Votre panier est vide",
+    "emptyHint": "Découvrez des produits qui vous plairont et ajoutez-les à votre panier.",
+    "explore": "Découvrir les produits →"
+  },
+  "mismatch": {
+    "error": "Une erreur s'est produite lors du transfert de votre panier",
+    "retry": "Relancer le transfert",
+    "transferring": "Transfert en cours.."
+  },
+  "search": {
+    "title": "Recherche",
+    "discover": "Découvrir FORSTEK",
+    "closeSearch": "Fermer la recherche",
+    "footer": "FORSTEK / RECHERCHE",
+    "whatAreYouLookingFor": "Que recherchez-vous ?",
+    "placeholder": "Rechercher des produits...",
+    "ariaLabel": "Rechercher des produits",
+    "clear": "Effacer",
+    "searchResults": "Résultats de recherche",
+    "productDiscovery": "Découverte de produits",
+    "resultsCount": "{count} RÉSULTATS",
+    "findSomething": "Trouvez quelque chose d'intéressant.",
+    "hint": "Parcourez notre collection de vêtements, nutrition sportive, électronique et essentiels pour la maison.",
+    "couldntSearch": "Impossible de rechercher les produits.",
+    "tryAgain": "Veuillez réessayer.",
+    "searching": "Recherche en cours",
+    "noProducts": "Aucun produit trouvé.",
+    "noResultsFor": "Aucun résultat pour \"{query}\". Essayez une autre recherche.",
+    "untitled": "Produit sans titre",
+    "viewProduct": "Voir le produit"
+  },
+  "searchForm": {
+    "label": "Rechercher des produits",
+    "placeholder": "Rechercher des produits",
+    "submit": "Rechercher"
+  },
+  "shippingNudge": {
+    "unlocked": "Livraison gratuite débloquée !",
+    "unlock": "Débloquez la livraison gratuite",
+    "only": "Plus que",
+    "away": "restants",
+    "viewCart": "Voir le panier",
+    "viewProducts": "Voir les produits"
+  }
+}

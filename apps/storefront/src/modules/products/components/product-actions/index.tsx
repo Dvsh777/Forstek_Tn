@@ -2,6 +2,7 @@
 
 import { addToCart } from "@lib/data/cart"
 import { useIntersection } from "@lib/hooks/use-in-view"
+import { useT } from "@lib/i18n/provider"
 import { notifyCartUpdated } from "@lib/util/cart-events"
 import { isVariantInStock } from "@lib/util/inventory"
 import { HttpTypes } from "@medusajs/types"
@@ -37,6 +38,7 @@ export default function ProductActions({
   product,
   disabled,
 }: ProductActionsProps) {
+  const t = useT()
   const router = useRouter()
   const pathname = usePathname()
   // Preselected on the server so the form posts a valid variant without JavaScript.
@@ -186,7 +188,9 @@ export default function ProductActions({
               className="text-small-regular text-ui-fg-subtle"
               data-testid="product-availability"
             >
-              {inStock ? "In stock" : "Out of stock"}
+              {inStock
+                ? t("product.actions.inStock")
+                : t("product.actions.outOfStock")}
             </p>
           )}
 
@@ -205,10 +209,10 @@ export default function ProductActions({
             data-testid="add-product-button"
           >
             {!selectedVariant
-              ? "Select variant"
+              ? t("product.actions.selectVariant")
               : !inStock || !isValidVariant
-              ? "Out of stock"
-              : "Add to cart"}
+              ? t("product.actions.outOfStock")
+              : t("product.actions.addToCart")}
           </Button>
         </form>
         <MobileActions

@@ -16,7 +16,7 @@ type Props = {
   params: Promise<{ countryCode: string; handle: string }>
 }
 
-export const dynamic = "force-static"
+// Not force-static: the interface language comes from the locale cookie.
 export const revalidate = 60
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -139,7 +139,6 @@ export default async function ProductPage(props: Props) {
         product={pricedProduct}
         region={region}
         countryCode={params.countryCode}
-        pageUrl={`${origin}/${params.countryCode}/products/${pricedProduct.handle}`}
       />
     </>
   )

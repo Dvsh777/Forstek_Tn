@@ -2,6 +2,7 @@
 
 import { useToggleRefinement } from "react-instantsearch"
 
+import { useT } from "@lib/i18n/provider"
 import { priceAttribute } from "@lib/search-client"
 
 /**
@@ -10,6 +11,7 @@ import { priceAttribute } from "@lib/search-client"
  * case until a price list applies to some product.
  */
 const OnSaleToggle = ({ currencyCode }: { currencyCode: string }) => {
+  const t = useT()
   const { value, refine, canRefine } = useToggleRefinement({
     attribute: priceAttribute("on_sale", currencyCode),
     on: true,
@@ -29,7 +31,7 @@ const OnSaleToggle = ({ currencyCode }: { currencyCode: string }) => {
         data-testid="on-sale-toggle"
       />
       <span className="txt-compact-small-plus text-ui-fg-subtle">
-        On sale only
+        {t("store.refinements.onSaleOnly")}
       </span>
       {typeof value.count === "number" && (
         <span className="text-small-regular text-ui-fg-muted">

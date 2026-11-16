@@ -1,3 +1,4 @@
+import { useT } from "@lib/i18n/provider"
 import { HttpTypes } from "@medusajs/types"
 import { clx } from "@modules/common/components/ui"
 import React from "react"
@@ -21,11 +22,14 @@ const OptionSelect: React.FC<OptionSelectProps> = ({
   "data-testid": dataTestId,
   disabled,
 }) => {
+  const t = useT()
   const filteredOptions = (option.values ?? []).map((v) => v.value)
 
   return (
     <fieldset className="flex flex-col gap-y-3" disabled={disabled}>
-      <legend className="text-sm mb-3">Select {title}</legend>
+      <legend className="text-sm mb-3">
+        {t("product.actions.selectOption", { title })}
+      </legend>
       <div
         className="flex flex-wrap justify-between gap-2"
         data-testid={dataTestId}

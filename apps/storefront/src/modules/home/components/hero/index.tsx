@@ -1,5 +1,6 @@
 
 import { HttpTypes } from "@medusajs/types"
+import { getT } from "@lib/i18n/server"
 import { VERTICALS } from "@lib/util/verticals"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { getVerticalHref } from "@modules/home/components/featured-categories"
@@ -31,11 +32,13 @@ const TILES = [
   },
 ]
 
-const Hero = ({
+const Hero = async ({
   categories,
 }: {
   categories: HttpTypes.StoreProductCategory[]
 }) => {
+  const t = await getT()
+
   return (
     <section
       aria-labelledby="hero-heading"
@@ -63,7 +66,7 @@ const Hero = ({
             <div className="mb-8 flex items-center gap-3">
               <span className="h-px w-8 bg-white/70" />
               <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-zinc-500">
-                The new way to shop
+                {t("home.hero.kicker")}
               </span>
             </div>
 
@@ -71,9 +74,9 @@ const Hero = ({
               id="hero-heading"
               className="text-[clamp(3.5rem,9vw,8.5rem)] font-semibold leading-[0.82] tracking-[-0.075em]"
             >
-              More than
+              {t("home.hero.titleLine1")}
               <span className="mt-3 block text-zinc-500">
-                just shopping.
+                {t("home.hero.titleLine2")}
               </span>
             </h1>
 
@@ -82,14 +85,13 @@ const Hero = ({
           <div className="max-w-[300px] pb-1 small:mr-3">
 
             <p className="text-base leading-relaxed text-zinc-400">
-              Your everyday essentials, discoveries and next favorites.
-              All in one place, delivered across Tunisia.
+              {t("home.hero.intro")}
             </p>
 
             <div className="mt-7 flex items-center gap-3">
               <span className="h-1.5 w-1.5 rounded-full bg-white" />
               <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500">
-                Explore our collections
+                {t("home.hero.explore")}
               </span>
             </div>
 
@@ -103,7 +105,7 @@ const Hero = ({
           </span>
           <div className="h-px flex-1 bg-gradient-to-r from-white/15 to-transparent" />
           <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
-            Find your category
+            {t("home.hero.findCategory")}
           </span>
         </div>
 
@@ -166,7 +168,7 @@ const Hero = ({
                     </div>
 
                     <span className="border border-white/[0.12] bg-white/[0.035] px-3 py-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-zinc-400 backdrop-blur-xl transition-all group-hover:border-white/40 group-hover:text-white">
-                      Discover
+                      {t("home.hero.discover")}
                     </span>
 
                   </div>
@@ -187,11 +189,11 @@ const Hero = ({
                       <span
                         className={`font-semibold leading-[0.9] tracking-[-0.055em] text-white transition-transform duration-500 group-hover:translate-x-1 ${tile.size}`}
                       >
-                        {vertical.name}
+                        {t(`verticals.${vertical.key}.name`)}
                       </span>
 
                       <span className="max-w-[30ch] text-[13px] leading-relaxed text-zinc-500 transition-colors duration-300 group-hover:text-zinc-300">
-                        {vertical.examples}
+                        {t(`verticals.${vertical.key}.examples`)}
                       </span>
 
                     </div>
@@ -234,13 +236,13 @@ const Hero = ({
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/[0.09] pt-6">
 
           <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-600">
-            A destination for everyday discoveries
+            {t("home.hero.destination")}
           </span>
 
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-zinc-700" />
             <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-500">
-              Tunisia
+              {t("layout.menu.tunisia")}
             </span>
           </div>
 

@@ -1,0 +1,34 @@
+{
+  "meta": {
+    "title": "Cart",
+    "description": "View your cart"
+  },
+  "title": "Cart",
+  "item": "Item",
+  "quantity": "Quantity",
+  "price": "Price",
+  "total": "Total",
+  "summary": "Summary",
+  "goToCheckout": "Go to checkout",
+  "quantityFor": "Quantity for {title}",
+  "updating": "Updating quantity",
+  "updateError": "Couldn't update this item. Try again.",
+  "empty": {
+    "eyebrow": "FORSTEK / YOUR CART",
+    "title": "Nothing here. Yet.",
+    "text": "Your next favourite might be waiting. Explore the collection and find something worth adding.",
+    "explore": "Explore the collection",
+    "footer": "FORSTEK — Find your next favourite"
+  },
+  "signIn": {
+    "eyebrow": "FORSTEK / YOUR ACCOUNT",
+    "title": "Already shopping with us?",
+    "text": "Sign in to pick up where you left off and keep your orders in one place.",
+    "button": "Sign in"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The cart you tried to access does not exist. Clear your cookies and try again.",
+    "home": "Go to frontpage"
+  }
+}

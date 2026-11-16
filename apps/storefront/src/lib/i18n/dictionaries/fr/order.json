@@ -1,0 +1,81 @@
+{
+  "help": {
+    "title": "Besoin d'aide ?",
+    "contact": "Contact",
+    "returns": "Retours et échanges"
+  },
+  "onboarding": {
+    "created": "Votre commande de test a été créée avec succès ! 🎉",
+    "setup": "Vous pouvez maintenant terminer la configuration de votre boutique dans l'administration.",
+    "button": "Terminer la configuration dans l'administration"
+  },
+  "details": {
+    "sentBefore": "Nous avons envoyé les détails de confirmation de la commande à",
+    "date": "Date de la commande :",
+    "number": "Numéro de commande :",
+    "status": "Statut de la commande :",
+    "paymentStatus": "Statut du paiement :"
+  },
+  "summary": {
+    "title": "Récapitulatif de la commande",
+    "subtotal": "Sous-total"
+  },
+  "payment": {
+    "title": "Paiement",
+    "method": "Mode de paiement",
+    "details": "Détails du paiement",
+    "paidAt": "{amount} payé le {date}"
+  },
+  "shipping": {
+    "title": "Livraison",
+    "address": "Adresse de livraison",
+    "contact": "Contact",
+    "method": "Méthode"
+  },
+  "completed": {
+    "meta": { "title": "Commande confirmée", "description": "Votre achat a bien été effectué" },
+    "thanks": "Merci !",
+    "placed": "Votre commande a été passée avec succès.",
+    "summary": "Récapitulatif"
+  },
+  "template": {
+    "title": "Détails de la commande",
+    "back": "Retour à l'aperçu"
+  },
+  "transfer": {
+    "success": "Commande transférée avec succès !",
+    "declined": "Transfert de la commande refusé avec succès !",
+    "accept": "Accepter le transfert",
+    "decline": "Refuser le transfert",
+    "title": "Demande de transfert pour la commande {id}",
+    "intro": "Vous avez reçu une demande de transfert de propriété de votre commande ({id}). Si vous acceptez cette demande, vous pouvez approuver le transfert en cliquant sur le bouton ci-dessous.",
+    "acceptNote": "Si vous acceptez, le nouveau propriétaire reprendra toutes les responsabilités et autorisations associées à cette commande.",
+    "ignoreNote": "Si vous ne reconnaissez pas cette demande ou souhaitez rester propriétaire, aucune autre action n'est nécessaire.",
+    "acceptedTitle": "Commande transférée !",
+    "acceptedText": "La commande {id} a été transférée avec succès au nouveau propriétaire.",
+    "acceptError": "Une erreur s'est produite lors de l'acceptation du transfert. Veuillez réessayer.",
+    "declinedTitle": "Transfert de commande refusé !",
+    "declinedText": "Le transfert de la commande {id} a été refusé avec succès.",
+    "declineError": "Une erreur s'est produite lors du refus du transfert. Veuillez réessayer.",
+    "errorMessage": "Message d'erreur : {error}"
+  },
+  "status": {
+    "not_fulfilled": "Non traitée",
+    "partially_fulfilled": "Partiellement traitée",
+    "fulfilled": "Traitée",
+    "partially_shipped": "Partiellement expédiée",
+    "shipped": "Expédiée",
+    "partially_delivered": "Partiellement livrée",
+    "delivered": "Livrée",
+    "canceled": "Annulée",
+    "not_paid": "Non payée",
+    "awaiting": "En attente",
+    "authorized": "Autorisée",
+    "partially_authorized": "Partiellement autorisée",
+    "captured": "Encaissée",
+    "partially_captured": "Partiellement encaissée",
+    "partially_refunded": "Partiellement remboursée",
+    "refunded": "Remboursée",
+    "requires_action": "Action requise"
+  }
+}

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 
 import { ChevronDownMini } from "@medusajs/icons"
 import { sdk } from "@lib/config"
+import { useT } from "@lib/i18n/provider"
 import { HttpTypes } from "@medusajs/types"
 import clsx from "clsx"
 
@@ -18,6 +19,7 @@ const OptionsPicker = ({
   selectedValueIds,
   setOptionValueIds,
 }: OptionsPickerProps) => {
+  const t = useT()
   const [options, setOptions] = useState<HttpTypes.StoreProductOption[]>([])
   const [openItems, setOpenItems] = useState<string[]>([])
 
@@ -66,10 +68,10 @@ const OptionsPicker = ({
       <div className="flex items-center justify-between">
         <div>
           <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-zinc-500">
-            Product attributes
+            {t("store.options.productAttributes")}
           </p>
           <h3 className="mt-1 text-sm font-medium tracking-tight text-zinc-200">
-            Options
+            {t("store.options.title")}
           </h3>
         </div>
 
@@ -79,7 +81,7 @@ const OptionsPicker = ({
             onClick={() => setOptionValueIds([])}
             className="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-500 transition-colors hover:text-white"
           >
-            Clear ({selectedValueIds.length})
+            {t("store.options.clear")} ({selectedValueIds.length})
           </button>
         )}
       </div>
@@ -130,7 +132,7 @@ const OptionsPicker = ({
                 <Accordion.Trigger className="group flex w-full items-center justify-between py-4 text-left outline-none">
                   <div className="flex items-center gap-3">
                     <span className="text-xs font-medium text-zinc-300 transition-colors group-hover:text-white">
-                      {option.title || "Option"}
+                      {option.title || t("store.options.option")}
                     </span>
 
                     {selectedCount > 0 && (

@@ -1,4 +1,5 @@
 import { retrieveOrder } from "@lib/data/orders"
+import { getT } from "@lib/i18n/server"
 import OrderCompletedTemplate from "@modules/order/templates/order-completed-template"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
@@ -6,9 +7,14 @@ import { notFound } from "next/navigation"
 type Props = {
   params: Promise<{ id: string }>
 }
-export const metadata: Metadata = {
-  title: "Order Confirmed",
-  description: "You purchase was successful",
+
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT()
+
+  return {
+    title: t("order.completed.meta.title"),
+    description: t("order.completed.meta.description"),
+  }
 }
 
 export default async function OrderConfirmedPage(props: Props) {

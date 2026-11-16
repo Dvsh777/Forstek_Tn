@@ -2,6 +2,7 @@
 "use client"
 
 import React, { useEffect, useActionState } from "react"
+import { useT } from "@lib/i18n/provider"
 import Input from "@modules/common/components/input"
 import AccountInfo from "../account-info"
 import { HttpTypes } from "@medusajs/types"
@@ -12,6 +13,7 @@ type MyInformationProps = {
 }
 
 const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
+  const t = useT()
   const [successState, setSuccessState] = React.useState(false)
 
   const updateCustomerPhone = async (
@@ -44,8 +46,8 @@ const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
   return (
     <form action={formAction} className="w-full min-w-0">
       <AccountInfo
-        label="Phone"
-        currentInfo={customer.phone || "No phone number added"}
+        label={t("account.profile.phone")}
+        currentInfo={customer.phone || t("account.profile.noPhone")}
         isSuccess={successState}
         isError={!!state.error}
         errorMessage={state.error || undefined}
@@ -54,7 +56,7 @@ const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
       >
         <div className="w-full">
           <Input
-            label="Phone"
+            label={t("account.profile.phone")}
             name="phone"
             type="tel"
             autoComplete="tel"

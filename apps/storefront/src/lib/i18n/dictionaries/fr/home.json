@@ -1,0 +1,25 @@
+{
+  "hero": {
+    "kicker": "La nouvelle façon de faire du shopping",
+    "titleLine1": "Bien plus que",
+    "titleLine2": "du simple shopping.",
+    "intro": "Vos indispensables du quotidien, vos découvertes et vos prochains coups de cœur. Tout au même endroit, livré partout en Tunisie.",
+    "explore": "Explorez nos collections",
+    "findCategory": "Trouvez votre catégorie",
+    "discover": "Découvrir",
+    "destination": "Une destination pour les découvertes du quotidien"
+  },
+  "collectionsAria": "Collections",
+  "viewAll": "Tout voir",
+  "valueProps": {
+    "heading": "Pourquoi acheter chez nous",
+    "deliveryTitle": "Livraison partout en Tunisie",
+    "deliveryDescription": "Les commandes sont livrées à votre porte, où que vous soyez dans le pays.",
+    "whatsappTitle": "Commandez sur WhatsApp",
+    "whatsappDescription": "Ouvrez un produit, choisissez vos options et envoyez la commande en un clic.",
+    "returnsTitle": "Politique de retour",
+    "returnsDescription": "Les délais et conditions de retour sont détaillés sur notre page de retours.",
+    "pricesTitle": "Prix en {currency}",
+    "pricesDescription": "Voyez ce que vous payez en monnaie locale, sans mauvaise surprise de conversion."
+  }
+}

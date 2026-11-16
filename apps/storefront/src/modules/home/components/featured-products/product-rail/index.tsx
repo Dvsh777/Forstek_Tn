@@ -1,4 +1,5 @@
 import { listProducts } from "@lib/data/products"
+import { getT } from "@lib/i18n/server"
 import { HttpTypes } from "@medusajs/types"
 
 import InteractiveLink from "@modules/common/components/interactive-link"
@@ -11,6 +12,7 @@ export default async function ProductRail({
   collection: HttpTypes.StoreCollection
   region: HttpTypes.StoreRegion
 }) {
+  const t = await getT()
   const {
     response: { products: pricedProducts },
   } = await listProducts({
@@ -32,7 +34,7 @@ export default async function ProductRail({
           {collection.title}
         </h2>
         <InteractiveLink href={`/collections/${collection.handle}`}>
-          View all
+          {t("home.viewAll")}
         </InteractiveLink>
       </div>
       {/* A swipeable row on phones, a four-column grid from 1024px. */}

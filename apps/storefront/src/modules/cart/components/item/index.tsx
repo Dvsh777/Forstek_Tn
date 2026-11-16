@@ -3,6 +3,7 @@
 
 import { Table, Text, clx } from "@modules/common/components/ui"
 import { updateLineItem } from "@lib/data/cart"
+import { useT } from "@lib/i18n/provider"
 import { HttpTypes } from "@medusajs/types"
 import CartItemSelect from "@modules/cart/components/cart-item-select"
 import ErrorMessage from "@modules/checkout/components/error-message"
@@ -22,6 +23,7 @@ type ItemProps = {
 }
 
 const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
+  const t = useT()
   const [updating, setUpdating] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
@@ -36,7 +38,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
       quantity,
     })
       .catch((err) => {
-        setError(err.message || "Couldn't update this item. Try again.")
+        setError(err.message || t("cart.updateError"))
       })
       .finally(() => {
         setUpdating(false)
@@ -108,7 +110,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
               }
               className="h-10 w-14"
               data-testid="product-select-button"
-              aria-label={`Quantity for ${item.product_title}`}
+              aria-label={t("cart.quantityFor", { title: item.product_title ?? "" })}
             >
               {Array.from(
                 { length: Math.min(maxQuantity, 10) },
@@ -125,7 +127,7 @@ const Item = ({ item, type = "full", currencyCode }: ItemProps) => {
             </CartItemSelect>
 
             {updating && (
-              <span className="text-white/50" aria-label="Updating quantity">
+              <span className="text-white/50" aria-label={t("cart.updating")}>
                 <Spinner />
               </span>
             )}

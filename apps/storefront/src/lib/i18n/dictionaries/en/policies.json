@@ -1,0 +1,47 @@
+{
+  "unavailable": "Policy details for this region haven't been published yet.",
+  "placeholder": "This is placeholder content from the Medusa starter. Replace it with your store's own text before launch.",
+  "free": "Free",
+  "shippingRate": "Shipping rate",
+  "processingTime": "Processing time",
+  "deliveryTime": "Delivery time",
+  "businessDays": "{range} business days",
+  "afterDispatch": "{range} business days after dispatch",
+  "contact": {
+    "title": "Contact",
+    "description": "How to contact {store}.",
+    "text": "Questions about an order, shipping or returns? Contact {store} customer service and include your order number."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "description": "How {store} collects and uses personal data.",
+    "p1": "{store} collects the information you provide at checkout, such as your name, email address and shipping address, to process and deliver your order.",
+    "p2": "Payment details are handled by our payment provider and are not stored by the store. Cookies are used to keep your cart and sign-in session."
+  },
+  "returns": {
+    "title": "Return policy",
+    "description": "How to return items and get a refund.",
+    "p1": "You can return items within {days} days of delivery. Items are returned by mail.",
+    "free": "Return shipping is free.",
+    "paid": "Return shipping costs are paid by the customer."
+  },
+  "shipping": {
+    "title": "Shipping information",
+    "description": "Shipping rates and delivery times.",
+    "intro": "Orders to {country} ship with the following rates and delivery times.",
+    "note": "Available shipping methods and final costs are shown at checkout."
+  },
+  "terms": {
+    "title": "Terms of service",
+    "description": "Terms that apply to purchases from {store}.",
+    "p1": "By placing an order with {store} you agree to these terms. Prices, product availability and shipping options are shown on the product pages and at checkout, and may change without notice.",
+    "p2": "Orders are confirmed by email once payment is received. Returns and refunds are handled according to our return policy."
+  },
+  "search": {
+    "title": "Search",
+    "results": "Search results for \"{query}\"",
+    "countOne": "{count} product found",
+    "countOther": "{count} products found",
+    "none": "No products match your search. Try a different keyword."
+  }
+}

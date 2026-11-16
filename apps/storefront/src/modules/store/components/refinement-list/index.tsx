@@ -4,6 +4,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { useCallback, useMemo } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import {
   OPTION_VALUE_QUERY_KEY,
   parseOptionValueIds,
@@ -23,6 +24,7 @@ const RefinementList = ({
   hideOptionsPicker = false,
   "data-testid": dataTestId,
 }: RefinementListProps) => {
+  const t = useT()
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()
@@ -78,7 +80,7 @@ const RefinementList = ({
         <div className="mb-5 flex items-center gap-3">
           <span className="h-px w-5 bg-white/50" />
           <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-500">
-            Refine your search
+            {t("store.sort.refineYourSearch")}
           </span>
         </div>
 

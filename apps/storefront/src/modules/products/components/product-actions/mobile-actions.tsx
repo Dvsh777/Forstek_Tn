@@ -3,6 +3,7 @@ import { Button, clx } from "@modules/common/components/ui"
 import React, { Fragment, useMemo } from "react"
 
 import useToggleState from "@lib/hooks/use-toggle-state"
+import { useT } from "@lib/i18n/provider"
 import ChevronDown from "@modules/common/icons/chevron-down"
 import X from "@modules/common/icons/x"
 
@@ -34,6 +35,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
   show,
   optionsDisabled,
 }) => {
+  const t = useT()
   const { state, open, close } = useToggleState()
 
   const price = getProductPrice({
@@ -112,7 +114,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                   <span>
                     {variant
                       ? Object.values(options).join(" / ")
-                      : "Select Options"}
+                      : t("product.actions.selectOptions")}
                   </span>
                   <ChevronDown />
                 </div>
@@ -126,10 +128,10 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                 data-testid="mobile-cart-button"
               >
                 {!variant
-                  ? "Select variant"
+                  ? t("product.actions.selectVariant")
                   : !inStock
-                  ? "Out of stock"
-                  : "Add to cart"}
+                  ? t("product.actions.outOfStock")
+                  : t("product.actions.addToCart")}
               </Button>
             </div>
           </div>
@@ -169,7 +171,7 @@ const MobileActions: React.FC<MobileActionsProps> = ({
                       onClick={close}
                       className="bg-white w-12 h-12 rounded-full text-ui-fg-base flex justify-center items-center"
                       data-testid="close-modal-button"
-                      aria-label="Close"
+                      aria-label={t("product.actions.close")}
                     >
                       <X />
                     </button>

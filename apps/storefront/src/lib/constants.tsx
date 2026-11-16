@@ -1,3 +1,4 @@
+import type { TFunction } from "@lib/i18n/config"
 import { CreditCard } from "@medusajs/icons"
 import Bancontact from "@modules/common/icons/bancontact"
 import Ideal from "@modules/common/icons/ideal"
@@ -34,6 +35,20 @@ export const paymentInfoMap: Record<
     icon: <CreditCard />,
   },
   // Add more payment providers here
+}
+
+// Customer-facing payment method title, translated where it is generic text
+// (brand names such as PayPal stay as they are).
+export const getPaymentTitle = (providerId: string, t: TFunction) => {
+  switch (providerId) {
+    case "pp_stripe_stripe":
+    case "pp_medusa-payments_default":
+      return t("checkout.payment.creditCard")
+    case "pp_system_default":
+      return t("checkout.payment.manualPayment")
+    default:
+      return paymentInfoMap[providerId]?.title || providerId
+  }
 }
 
 // This only checks if it is native stripe or medusa payments for card payments, it ignores the other stripe-based providers

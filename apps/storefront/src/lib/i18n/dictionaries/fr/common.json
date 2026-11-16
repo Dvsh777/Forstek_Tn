@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "homeTitle": "FORSTEK | Vêtements, nutrition sportive, gadgets et maison",
+    "homeDescription": "Achetez des vêtements, des articles de sport et de nutrition, de l'électronique et des gadgets, ainsi que des produits pour le style de vie et la maison. Prix en TND.",
+    "categoryDescription": "Catégorie {title}.",
+    "collectionDescription": "Collection {title}"
+  },
+  "totals": {
+    "subtotalExcl": "Sous-total (hors livraison et taxes)",
+    "shipping": "Livraison",
+    "discount": "Réduction",
+    "taxes": "Taxes",
+    "total": "Total"
+  },
+  "variant": "Variante : {title}",
+  "select": "Sélectionner...",
+  "poweredBy": "Propulsé par",
+  "notFound": {
+    "metaDescription": "Une erreur s'est produite",
+    "title": "Page introuvable",
+    "text": "La page à laquelle vous essayez d'accéder n'existe pas.",
+    "home": "Aller à la page d'accueil"
+  }
+}

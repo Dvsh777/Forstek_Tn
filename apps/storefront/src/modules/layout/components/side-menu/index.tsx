@@ -11,6 +11,7 @@ import { Fragment } from "react"
 import CountrySelect from "../country-select"
 import LanguageSelect from "../language-select"
 import { Locale } from "@lib/data/locales"
+import { useT } from "@lib/i18n/provider"
 
 const SideMenuItems = {
   Home: "/",
@@ -30,6 +31,7 @@ const SideMenu = ({
   locales,
   currentLocale,
 }: SideMenuProps) => {
+  const t = useT()
   const countryToggleState = useToggleState()
   const languageToggleState = useToggleState()
 
@@ -48,7 +50,7 @@ const SideMenu = ({
                   <span className="h-px w-5 bg-current transition-all duration-300 group-hover:w-7" />
                   <span className="h-px w-3 bg-current transition-all duration-300 group-hover:w-5" />
                 </span>
-                Menu
+                {t("layout.menu.open")}
               </Popover.Button>
 
               {/* Background overlay */}
@@ -92,7 +94,7 @@ const SideMenu = ({
                       <button
                         data-testid="close-menu-button"
                         onClick={close}
-                        aria-label="Close menu"
+                        aria-label={t("layout.menu.close")}
                         className="flex h-10 w-10 items-center justify-center border border-white/[0.12] text-zinc-400 transition-all hover:border-white hover:bg-white hover:text-black"
                       >
                         <XMark className="h-5 w-5" />
@@ -102,7 +104,7 @@ const SideMenu = ({
                     {/* Navigation links */}
                     <div className="mb-5 mt-12">
                       <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-600">
-                        Navigation
+                        {t("layout.menu.navigation")}
                       </span>
                     </div>
 
@@ -122,7 +124,7 @@ const SideMenu = ({
                                 </span>
 
                                 <span className="text-[2rem] font-medium leading-none tracking-[-0.045em] text-zinc-400 transition-all duration-300 group-hover:translate-x-2 group-hover:text-white sm:text-[2.5rem]">
-                                  {name}
+                                  {t(`layout.links.${name.toLowerCase()}`)}
                                 </span>
                               </div>
 
@@ -139,12 +141,12 @@ const SideMenu = ({
 
                     <div className="mb-7 border-t border-white/[0.10] pt-7">
                       <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-zinc-600">
-                        Preferences
+                        {t("layout.menu.preferences")}
                       </span>
                     </div>
 
                     {/* Language */}
-                    {!!locales?.length && (
+                    {(
                       <div
                         className="mb-6 flex items-center justify-between text-sm text-zinc-400 transition-colors hover:text-white"
                         onMouseEnter={languageToggleState.open}
@@ -193,7 +195,7 @@ const SideMenu = ({
                       </span>
 
                       <span className="font-mono text-[9px] uppercase tracking-[0.15em] text-zinc-600">
-                        Tunisia
+                        {t("layout.menu.tunisia")}
                       </span>
                     </div>
 

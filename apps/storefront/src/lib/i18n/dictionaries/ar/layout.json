@@ -1,0 +1,84 @@
+{
+  "menu": {
+    "open": "القائمة",
+    "close": "إغلاق القائمة",
+    "navigation": "التصفح",
+    "preferences": "التفضيلات",
+    "tunisia": "تونس"
+  },
+  "links": {
+    "home": "الرئيسية",
+    "store": "المتجر",
+    "account": "الحساب",
+    "cart": "السلة"
+  },
+  "language": {
+    "label": "اللغة:"
+  },
+  "country": {
+    "shippingTo": "الشحن إلى:"
+  },
+  "nav": {
+    "account": "الحساب",
+    "cartEmpty": "السلة (0)"
+  },
+  "checkout": {
+    "backToCart": "العودة إلى سلة التسوق",
+    "back": "رجوع"
+  },
+  "cart": {
+    "cart": "السلة",
+    "yourBag": "سلتك",
+    "item": "منتج",
+    "items": "منتجات",
+    "viewBag": "عرض السلة ←",
+    "qty": "الكمية: {quantity}",
+    "remove": "إزالة",
+    "subtotal": "المجموع الفرعي",
+    "exclTaxes": "دون الضرائب",
+    "goToCart": "الانتقال إلى السلة",
+    "empty": "سلتك فارغة",
+    "emptyHint": "اكتشف منتجات ستعجبك وأضفها إلى سلتك.",
+    "explore": "استكشف المنتجات ←"
+  },
+  "mismatch": {
+    "error": "حدث خطأ أثناء محاولة نقل سلتك",
+    "retry": "إعادة محاولة النقل",
+    "transferring": "جارٍ النقل.."
+  },
+  "search": {
+    "title": "بحث",
+    "discover": "اكتشف FORSTEK",
+    "closeSearch": "إغلاق البحث",
+    "footer": "FORSTEK / بحث",
+    "whatAreYouLookingFor": "عمّ تبحث؟",
+    "placeholder": "ابحث عن المنتجات...",
+    "ariaLabel": "ابحث عن المنتجات",
+    "clear": "مسح",
+    "searchResults": "نتائج البحث",
+    "productDiscovery": "اكتشاف المنتجات",
+    "resultsCount": "{count} نتيجة",
+    "findSomething": "اعثر على ما يثير اهتمامك.",
+    "hint": "تصفح مجموعتنا من الملابس والتغذية الرياضية والإلكترونيات ومستلزمات المنزل.",
+    "couldntSearch": "تعذّر البحث عن المنتجات.",
+    "tryAgain": "يرجى المحاولة مرة أخرى.",
+    "searching": "جارٍ البحث",
+    "noProducts": "لم يتم العثور على منتجات.",
+    "noResultsFor": "لا توجد نتائج لـ \"{query}\". جرّب بحثًا آخر.",
+    "untitled": "منتج بلا عنوان",
+    "viewProduct": "عرض المنتج"
+  },
+  "searchForm": {
+    "label": "ابحث عن المنتجات",
+    "placeholder": "ابحث عن المنتجات",
+    "submit": "بحث"
+  },
+  "shippingNudge": {
+    "unlocked": "تم تفعيل الشحن المجاني!",
+    "unlock": "فعّل الشحن المجاني",
+    "only": "تبقّى فقط",
+    "away": "",
+    "viewCart": "عرض السلة",
+    "viewProducts": "عرض المنتجات"
+  }
+}

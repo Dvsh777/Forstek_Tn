@@ -11,6 +11,7 @@ import {
   useState,
 } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import ChevronDown from "@modules/common/icons/chevron-down"
 
 type NativeSelectProps = {
@@ -20,7 +21,9 @@ type NativeSelectProps = {
 } & Omit<SelectHTMLAttributes<HTMLSelectElement>, "size">
 
 const CartItemSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
-  ({ placeholder = "Select...", className, children, ...props }, ref) => {
+  ({ placeholder: placeholderProp, className, children, ...props }, ref) => {
+    const t = useT()
+    const placeholder = placeholderProp ?? t("common.select")
     const innerRef = useRef<HTMLSelectElement>(null)
     const [isPlaceholder, setIsPlaceholder] = useState(false)
 

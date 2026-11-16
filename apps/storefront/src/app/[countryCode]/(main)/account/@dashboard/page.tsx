@@ -4,10 +4,15 @@ import Overview from "@modules/account/components/overview"
 import { notFound } from "next/navigation"
 import { retrieveCustomer } from "@lib/data/customer"
 import { listOrders } from "@lib/data/orders"
+import { getT } from "@lib/i18n/server"
 
-export const metadata: Metadata = {
-  title: "Account",
-  description: "Overview of your account activity.",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT()
+
+  return {
+    title: t("account.pages.overview.title"),
+    description: t("account.pages.overview.description"),
+  }
 }
 
 export default async function OverviewTemplate() {

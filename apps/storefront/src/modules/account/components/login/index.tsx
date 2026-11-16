@@ -2,6 +2,7 @@
 "use client"
 
 import { login } from "@lib/data/customer"
+import { useT } from "@lib/i18n/provider"
 import { LOGIN_VIEW } from "@modules/account/templates/login-template"
 import ErrorMessage from "@modules/checkout/components/error-message"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
@@ -13,6 +14,7 @@ type Props = {
 }
 
 const Login = ({ setCurrentView }: Props) => {
+  const t = useT()
   const [message, formAction] = useActionState(login, null)
 
   return (
@@ -22,26 +24,26 @@ const Login = ({ setCurrentView }: Props) => {
           className="mb-6 w-full border border-white/15 bg-white/[0.04] p-4 text-sm leading-relaxed text-white/75"
           data-testid="login-verification-message"
         >
-          We sent a verification link to{" "}
-          <strong className="break-all text-white">{message.email}</strong>.
-          Please verify your email, then sign in.
+          {t("account.login.verificationBefore")}{" "}
+          <strong className="break-all text-white">{message.email}</strong>
+          {t("account.login.verificationAfter")}
         </div>
       )}
 
       <form className="w-full" action={formAction}>
         <div className="flex w-full flex-col gap-y-6">
           <Input
-            label="Email address"
+            label={t("account.login.email")}
             name="email"
             type="email"
-            title="Enter a valid email address."
+            title={t("checkout.fields.emailTitle")}
             autoComplete="email"
             required
             data-testid="email-input"
           />
 
           <Input
-            label="Password"
+            label={t("account.login.password")}
             name="password"
             type="password"
             autoComplete="current-password"
@@ -59,14 +61,14 @@ const Login = ({ setCurrentView }: Props) => {
           data-testid="sign-in-button"
           className="mt-7 w-full"
         >
-          Sign in
+          {t("account.login.signIn")}
         </SubmitButton>
       </form>
 
       <div className="my-8 flex items-center gap-4">
         <div className="h-px flex-1 bg-white/10" />
         <span className="text-[10px] uppercase tracking-wider text-white/30">
-          New here?
+          {t("account.login.newHere")}
         </span>
         <div className="h-px flex-1 bg-white/10" />
       </div>
@@ -77,7 +79,7 @@ const Login = ({ setCurrentView }: Props) => {
         className="w-full border border-white/20 px-5 py-4 text-xs font-semibold uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-black"
         data-testid="register-button"
       >
-        Create an account
+        {t("account.login.createAccount")}
       </button>
     </div>
   )

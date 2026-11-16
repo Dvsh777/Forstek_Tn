@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "Checkout"
+  },
+  "shippingAddress": "Shipping Address",
+  "billingAddressHeading": "Billing address",
+  "billingAddressLabel": "Billing Address",
+  "edit": "Edit",
+  "continueToDelivery": "Continue to delivery",
+  "contact": "Contact",
+  "billingSame": "Billing and delivery address are the same.",
+  "savedAddressPrompt": "Hi {name}, do you want to use one of your saved addresses?",
+  "chooseAddress": "Choose an address",
+  "fields": {
+    "firstName": "First name",
+    "lastName": "Last name",
+    "address": "Address",
+    "company": "Company",
+    "postalCode": "Postal code",
+    "city": "City",
+    "country": "Country",
+    "province": "State / Province",
+    "email": "Email",
+    "phone": "Phone",
+    "emailTitle": "Enter a valid email address."
+  },
+  "billingSameAsShipping": "Billing address same as shipping address",
+  "discount": {
+    "add": "Add Promotion Code(s)",
+    "apply": "Apply",
+    "applied": "Promotion(s) applied:",
+    "remove": "Remove discount code from order"
+  },
+  "delivery": {
+    "title": "Delivery",
+    "shippingMethod": "Shipping method",
+    "howDeliver": "How would you like you order delivered",
+    "pickup": "Pick up your order",
+    "store": "Store",
+    "chooseStore": "Choose a store near you",
+    "continueToPayment": "Continue to payment",
+    "method": "Method"
+  },
+  "payment": {
+    "creditCard": "Credit card",
+    "manualPayment": "Manual Payment",
+    "title": "Payment",
+    "paymentMethod": "Payment method",
+    "giftCard": "Gift card",
+    "enterDetails": "Enter payment details",
+    "continueToReview": "Continue to review",
+    "paymentDetails": "Payment details",
+    "anotherStep": "Another step will appear",
+    "enterYourDetails": "Enter your payment details:",
+    "loadError": "Could not load the payment methods.",
+    "attention": "Attention:",
+    "testingOnly": "For testing purposes only.",
+    "selectMethod": "Select a payment method",
+    "placeOrder": "Place order"
+  },
+  "review": {
+    "title": "Review",
+    "terms": "By clicking the Place Order button, you confirm that you have read, understand and accept our Terms of Use, Terms of Sale and Returns Policy and acknowledge that you have read Medusa Store's Privacy Policy."
+  },
+  "summary": {
+    "inYourCart": "In your Cart"
+  }
+}

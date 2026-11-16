@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import NativeSelect, {
   NativeSelectProps,
 } from "@modules/common/components/native-select"
@@ -10,7 +11,9 @@ const CountrySelect = forwardRef<
   NativeSelectProps & {
     region?: HttpTypes.StoreRegion
   }
->(({ placeholder = "Country", region, defaultValue, ...props }, ref) => {
+>(({ placeholder: placeholderProp, region, defaultValue, ...props }, ref) => {
+  const t = useT()
+  const placeholder = placeholderProp ?? t("checkout.fields.country")
   const innerRef = useRef<HTMLSelectElement>(null)
 
   useImperativeHandle<HTMLSelectElement | null, HTMLSelectElement | null>(

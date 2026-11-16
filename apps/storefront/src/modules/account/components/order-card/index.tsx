@@ -1,6 +1,7 @@
 
 import { useMemo } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import Thumbnail from "@modules/products/components/thumbnail"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { convertToLocale } from "@lib/util/money"
@@ -11,6 +12,7 @@ type OrderCardProps = {
 }
 
 const OrderCard = ({ order }: OrderCardProps) => {
+  const t = useT()
   const numberOfLines = useMemo(
     () =>
       order.items?.reduce((total, item) => total + item.quantity, 0) ?? 0,
@@ -29,7 +31,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
         <div>
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mb-2">
-            Order number
+            {t("account.orders.orderNumber")}
           </p>
           <h2 className="text-lg font-semibold tracking-tight">
             #
@@ -39,7 +41,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
 
         <div className="sm:text-right">
           <p className="text-[10px] uppercase tracking-[0.18em] text-white/35 mb-2">
-            Order total
+            {t("account.orders.orderTotal")}
           </p>
           <p className="text-base font-semibold" data-testid="order-amount">
             {convertToLocale({
@@ -56,11 +58,21 @@ const OrderCard = ({ order }: OrderCardProps) => {
         </span>
         <span className="h-1 w-1 rounded-full bg-white/25" />
         <span>
-          {numberOfLines} {numberOfLines === 1 ? "item" : "items"}
+          {t(
+            numberOfLines === 1
+              ? "account.orders.itemOne"
+              : "account.orders.itemOther",
+            { count: numberOfLines }
+          )}
         </span>
         <span className="h-1 w-1 rounded-full bg-white/25" />
         <span>
-          {numberOfProducts} {numberOfProducts === 1 ? "product" : "products"}
+          {t(
+            numberOfProducts === 1
+              ? "account.orders.productOne"
+              : "account.orders.productOther",
+            { count: numberOfProducts }
+          )}
         </span>
       </div>
 
@@ -101,7 +113,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
                 +{remainingProducts}
               </span>
               <span className="text-[10px] uppercase tracking-wider text-white/40 mt-1">
-                More products
+                {t("account.orders.more")}
               </span>
             </div>
           )}
@@ -114,7 +126,7 @@ const OrderCard = ({ order }: OrderCardProps) => {
           className="inline-flex items-center justify-center gap-3 border border-white/20 px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.15em] text-white hover:bg-white hover:text-black transition-colors"
           data-testid="order-details-link"
         >
-          View order details
+          {t("account.orders.view")}
           <span aria-hidden="true">↗</span>
         </LocalizedClientLink>
       </div>

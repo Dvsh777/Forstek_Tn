@@ -2,12 +2,14 @@
 "use client"
 
 import { createTransferRequest } from "@lib/data/orders"
+import { useT } from "@lib/i18n/provider"
 import { CheckCircleMiniSolid, XCircleSolid } from "@medusajs/icons"
 import { IconButton } from "@modules/common/components/ui"
 import { useActionState, useEffect, useState } from "react"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
 
 export default function TransferRequestForm() {
+  const t = useT()
   const [showSuccess, setShowSuccess] = useState(false)
 
   const [state, formAction] = useActionState(createTransferRequest, {
@@ -27,16 +29,15 @@ export default function TransferRequestForm() {
       <div className="flex flex-col gap-5">
         <div>
           <p className="text-[10px] uppercase tracking-[0.2em] text-white/35 mb-2">
-            ACCOUNT / ORDERS
+            {t("account.transfer.eyebrow")}
           </p>
 
           <h3 className="text-base font-semibold text-white">
-            Order transfers
+            {t("account.transfer.title")}
           </h3>
 
           <p className="text-sm leading-6 text-white/45 mt-2">
-            Can't find an order associated with your account? Request to
-            connect an existing order using its order ID.
+            {t("account.transfer.text")}
           </p>
         </div>
 
@@ -44,7 +45,7 @@ export default function TransferRequestForm() {
           <input
             name="order_id"
             type="text"
-            placeholder="Enter your order ID"
+            placeholder={t("account.transfer.placeholder")}
             required
             className="min-w-0 flex-1 h-11 px-4 bg-[#17181b] border border-white/10 text-white text-sm placeholder:text-white/30 outline-none focus:border-white/40 transition-colors"
           />
@@ -53,7 +54,7 @@ export default function TransferRequestForm() {
             variant="secondary"
             className="!w-full sm:!w-auto !h-11 !px-6 !bg-white !text-black hover:!bg-white/85 !border-0 !rounded-none !text-sm !font-semibold"
           >
-            Request transfer
+            {t("account.transfer.button")}
           </SubmitButton>
         </form>
 
@@ -70,12 +71,14 @@ export default function TransferRequestForm() {
 
               <div className="min-w-0">
                 <p className="text-sm font-medium text-white">
-                  Transfer request submitted
+                  {t("account.transfer.submitted")}
                 </p>
 
                 <p className="text-xs leading-5 text-white/45 mt-1">
-                  Order {state.order?.id} — confirmation sent to{" "}
-                  {state.order?.email}
+                  {t("account.transfer.confirmation", {
+                    id: state.order?.id ?? "",
+                    email: state.order?.email ?? "",
+                  })}
                 </p>
               </div>
             </div>
@@ -83,7 +86,7 @@ export default function TransferRequestForm() {
             <IconButton
               className="!h-fit !text-white/50 hover:!text-white"
               onClick={() => setShowSuccess(false)}
-              aria-label="Dismiss success message"
+              aria-label={t("account.transfer.dismiss")}
             >
               <XCircleSolid className="w-4 h-4" />
             </IconButton>

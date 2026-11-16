@@ -1,3 +1,4 @@
+import { getT } from "@lib/i18n/server"
 import { HttpTypes } from "@medusajs/types"
 import FeaturedProducts from "@modules/home/components/featured-products"
 import Hero from "@modules/home/components/hero"
@@ -9,7 +10,7 @@ import ValueProps from "@modules/home/components/value-props"
  * 2. Curated collections rail
  * 3. Value propositions footer bar
  */
-const HomeTemplate = ({
+const HomeTemplate = async ({
   region,
   collections,
   categories,
@@ -18,6 +19,8 @@ const HomeTemplate = ({
   collections: HttpTypes.StoreCollection[]
   categories: HttpTypes.StoreProductCategory[]
 }) => {
+  const t = await getT()
+
   return (
     <div className="bg-[#0a0a0c] min-h-screen text-white">
       {/* 4-Way Hero Split */}
@@ -26,7 +29,7 @@ const HomeTemplate = ({
       {/* Featured Collections Section */}
       {collections.length > 0 && (
         <section
-          aria-label="Collections"
+          aria-label={t("home.collectionsAria")}
           data-testid="curated-collections"
           className="py-12 border-t border-zinc-900 bg-zinc-950/40"
         >

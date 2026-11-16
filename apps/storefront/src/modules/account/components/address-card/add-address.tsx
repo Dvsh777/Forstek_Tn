@@ -6,6 +6,7 @@ import { useActionState, useEffect, useState } from "react"
 
 import { addCustomerAddress } from "@lib/data/customer"
 import useToggleState from "@lib/hooks/use-toggle-state"
+import { useT } from "@lib/i18n/provider"
 import { HttpTypes } from "@medusajs/types"
 import CountrySelect from "@modules/checkout/components/country-select"
 import { SubmitButton } from "@modules/checkout/components/submit-button"
@@ -18,6 +19,7 @@ const AddAddress = ({
   region: HttpTypes.StoreRegion
   addresses: HttpTypes.StoreCustomerAddress[]
 }) => {
+  const t = useT()
   const [successState, setSuccessState] = useState(false)
   const { state, open, close: closeModal } = useToggleState(false)
 
@@ -62,10 +64,10 @@ const AddAddress = ({
       >
         <div className="flex flex-col gap-1">
           <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#777777]">
-            Address book
+            {t("account.addresses.book")}
           </span>
           <span className="text-sm font-semibold text-[#eeeeee]">
-            New address
+            {t("account.addresses.newAddress")}
           </span>
         </div>
 
@@ -74,7 +76,7 @@ const AddAddress = ({
         </div>
 
         <span className="absolute bottom-5 right-5 text-[10px] uppercase tracking-[0.15em] text-[#555555] transition-colors group-hover:text-[#aaaaaa]">
-          Add location
+          {t("account.addresses.addLocation")}
         </span>
       </button>
 
@@ -82,10 +84,10 @@ const AddAddress = ({
         <Modal.Title>
           <div className="mb-2">
             <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-[#888888]">
-              Address book
+              {t("account.addresses.book")}
             </span>
             <Heading className="mt-1 text-[#eeeeee]">
-              Add address
+              {t("account.addresses.addTitle")}
             </Heading>
           </div>
         </Modal.Title>
@@ -95,14 +97,14 @@ const AddAddress = ({
             <div className="flex flex-col gap-y-3">
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <Input
-                  label="First name"
+                  label={t("checkout.fields.firstName")}
                   name="first_name"
                   required
                   autoComplete="given-name"
                   data-testid="first-name-input"
                 />
                 <Input
-                  label="Last name"
+                  label={t("checkout.fields.lastName")}
                   name="last_name"
                   required
                   autoComplete="family-name"
@@ -111,14 +113,14 @@ const AddAddress = ({
               </div>
 
               <Input
-                label="Company"
+                label={t("checkout.fields.company")}
                 name="company"
                 autoComplete="organization"
                 data-testid="company-input"
               />
 
               <Input
-                label="Address"
+                label={t("checkout.fields.address")}
                 name="address_1"
                 required
                 autoComplete="address-line1"
@@ -126,7 +128,7 @@ const AddAddress = ({
               />
 
               <Input
-                label="Apartment, suite, etc."
+                label={t("account.addresses.apartment")}
                 name="address_2"
                 autoComplete="address-line2"
                 data-testid="address-2-input"
@@ -134,7 +136,7 @@ const AddAddress = ({
 
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-[140px_1fr]">
                 <Input
-                  label="Postal code"
+                  label={t("checkout.fields.postalCode")}
                   name="postal_code"
                   required
                   autoComplete="postal-code"
@@ -142,7 +144,7 @@ const AddAddress = ({
                 />
 
                 <Input
-                  label="City"
+                  label={t("checkout.fields.city")}
                   name="city"
                   required
                   autoComplete="locality"
@@ -151,7 +153,7 @@ const AddAddress = ({
               </div>
 
               <Input
-                label="Province / State"
+                label={t("account.addresses.provinceState")}
                 name="province"
                 autoComplete="address-level1"
                 data-testid="state-input"
@@ -166,7 +168,7 @@ const AddAddress = ({
               />
 
               <Input
-                label="Phone"
+                label={t("checkout.fields.phone")}
                 name="phone"
                 autoComplete="tel"
                 data-testid="phone-input"
@@ -192,14 +194,14 @@ const AddAddress = ({
                 className="h-10 w-full border border-[#383838] bg-transparent text-[#cccccc] hover:bg-[#222222] sm:w-auto"
                 data-testid="cancel-button"
               >
-                Cancel
+                {t("account.addresses.cancel")}
               </Button>
 
               <SubmitButton
                 data-testid="save-button"
                 className="h-10 w-full sm:w-auto"
               >
-                Save address
+                {t("account.addresses.saveAddress")}
               </SubmitButton>
             </div>
           </Modal.Footer>

@@ -46,7 +46,12 @@ export const updateLocale = async (localeCode: string): Promise<string> => {
       ...(await getAuthHeaders()),
     }
 
-    await sdk.store.cart.update(cartId, { locale: localeCode }, {}, headers)
+    // The interface language is stored in the cookie above. If the backend
+    // does not define this locale yet (Stage 3), the cart update is skipped
+    // instead of breaking the language switch.
+    try {
+      await sdk.store.cart.update(cartId, { locale: localeCode }, {}, headers)
+    } catch {}
 
     const cartCacheTag = await getCacheTag("carts")
     if (cartCacheTag) {

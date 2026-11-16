@@ -1,6 +1,8 @@
 
 import React from "react"
 
+import { getT } from "@lib/i18n/server"
+
 import UnderlineLink from "@modules/common/components/interactive-link"
 import AccountNav from "../components/account-nav"
 import { HttpTypes } from "@medusajs/types"
@@ -10,10 +12,9 @@ interface AccountLayoutProps {
   children: React.ReactNode
 }
 
-const AccountLayout: React.FC<AccountLayoutProps> = ({
-  customer,
-  children,
-}) => {
+const AccountLayout = async ({ customer, children }: AccountLayoutProps) => {
+  const t = await getT()
+
   // Login and registration: full-width centered layout.
   if (!customer) {
     return (
@@ -49,29 +50,28 @@ const AccountLayout: React.FC<AccountLayoutProps> = ({
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="max-w-xl">
               <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
-                FORSTEK / SUPPORT
+                {t("account.layout.supportEyebrow")}
               </p>
 
               <h3 className="mb-2 text-sm font-semibold uppercase tracking-wide text-white">
-                Need assistance?
+                {t("account.layout.needAssistance")}
               </h3>
 
               <p className="text-sm leading-6 text-white/45">
-                Have a question about your account or an order? Our customer
-                service team is here to help.
+                {t("account.layout.assistanceText")}
               </p>
             </div>
 
             <div className="sm:shrink-0">
               <UnderlineLink href="/customer-service">
-                Customer Service
+                {t("account.layout.customerService")}
               </UnderlineLink>
             </div>
           </div>
 
           <div className="mt-8 flex flex-col gap-2 border-t border-white/[0.06] pt-5 text-[10px] uppercase tracking-[0.12em] text-white/30 sm:flex-row sm:items-center sm:justify-between">
             <span>FORSTEK</span>
-            <span>Account & Customer Support</span>
+            <span>{t("account.layout.footerRight")}</span>
           </div>
         </footer>
       </div>
