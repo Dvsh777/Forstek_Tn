@@ -8,6 +8,10 @@ import { useT } from "@lib/i18n/provider"
 import { indexedCurrency, priceAttribute } from "@lib/search-client"
 import { convertToLocale } from "@lib/util/money"
 import {
+  getCategoryLabels,
+  type StoreCategoryNode,
+} from "@lib/util/store-categories"
+import {
   CATEGORY_ATTRIBUTE,
   LABELS_ATTRIBUTE,
   OPTION_VALUES_ATTRIBUTE,
@@ -25,7 +29,8 @@ type Refinement = ReturnType<
 function refinementLabel(
   refinement: Refinement,
   currencyCode: string,
-  t: TFunction
+  t: TFunction,
+  categoryLabels: Record<string, string>
 ) {
   const { attribute, label, value, operator } = refinement
 
@@ -56,7 +61,9 @@ function refinementLabel(
   }
 
   if (attribute === CATEGORY_ATTRIBUTE) {
-    return t("store.refinements.categoryChip", { label })
+    return t("store.refinements.categoryChip", {
+      label: categoryLabels[String(value)] ?? label,
+    })
   }
 
   if (attribute === LABELS_ATTRIBUTE) {
@@ -71,8 +78,15 @@ function refinementLabel(
  * them. The free-text query is excluded by the connector's own defaults, so
  * only what the sidebar controls shows up here.
  */
-const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
+const CurrentRefinements = ({
+  currencyCode,
+  categories = [],
+}: {
+  currencyCode: string
+  categories?: StoreCategoryNode[]
+}) => {
   const t = useT()
+  const categoryLabels = getCategoryLabels(categories)
   const { items, refine } = useCurrentRefinements()
   const { canRefine: canClearAll, refine: clearAll } = useClearRefinements()
 
@@ -101,7 +115,12 @@ const CurrentRefinements = ({ currencyCode }: { currencyCode: string }) => {
 
       <ul className="flex flex-wrap gap-2 pr-6">
         {refinements.map((refinement) => {
-          const label = refinementLabel(refinement, currencyCode, t)
+          const label = refinementLabel(
+            refinement,
+            currencyCode,
+            t,
+            categoryLabels
+          )
 
           return (
             <li

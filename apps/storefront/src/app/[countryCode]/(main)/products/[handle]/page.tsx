@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { listCategoryTree } from "@lib/data/categories"
 import { listProducts } from "@lib/data/products"
 import { getRegion, listRegions } from "@lib/data/regions"
 import ProductTemplate from "@modules/products/templates"
@@ -120,7 +121,10 @@ export default async function ProductPage(props: Props) {
     notFound()
   }
 
-  const origin = await getSiteOrigin()
+  const [origin, categories] = await Promise.all([
+    getSiteOrigin(),
+    listCategoryTree().catch(() => []),
+  ])
   const structuredData = buildProductStructuredData({
     product: pricedProduct,
     region,
@@ -139,6 +143,7 @@ export default async function ProductPage(props: Props) {
         product={pricedProduct}
         region={region}
         countryCode={params.countryCode}
+        categories={categories}
       />
     </>
   )

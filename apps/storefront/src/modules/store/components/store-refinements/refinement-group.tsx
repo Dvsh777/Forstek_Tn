@@ -6,9 +6,11 @@ import { useRefinementList } from "react-instantsearch"
 type RefinementGroupProps = {
   attribute: string
   title: string
+  /** Display text for facet values, when it differs from the stored value. */
+  labels?: Record<string, string>
 }
 
-const RefinementGroup = ({ attribute, title }: RefinementGroupProps) => {
+const RefinementGroup = ({ attribute, title, labels }: RefinementGroupProps) => {
   const { items, refine } = useRefinementList({
     attribute,
     limit: 20,
@@ -41,7 +43,7 @@ const RefinementGroup = ({ attribute, title }: RefinementGroupProps) => {
                   "text-ui-fg-subtle": !item.isRefined,
                 })}
               >
-                {item.label}
+                {labels?.[item.value] ?? item.label}
               </span>
               <span className="text-small-regular shrink-0 text-ui-fg-muted">
                 ({item.count})

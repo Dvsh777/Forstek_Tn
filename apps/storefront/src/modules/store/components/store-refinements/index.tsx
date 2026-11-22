@@ -4,6 +4,10 @@
 import { useSortBy } from "react-instantsearch"
 
 import { useT } from "@lib/i18n/provider"
+import {
+  getCategoryLabels,
+  type StoreCategoryNode,
+} from "@lib/util/store-categories"
 import FilterRadioGroup from "@modules/common/components/filter-radio-group"
 import {
   CATEGORY_ATTRIBUTE,
@@ -34,8 +38,10 @@ const SortProducts = ({ currencyCode }: { currencyCode: string }) => {
 
 const StoreRefinements = ({
   currencyCode,
+  categories = [],
 }: {
   currencyCode: string
+  categories?: StoreCategoryNode[]
 }) => {
   const t = useT()
 
@@ -58,7 +64,10 @@ const StoreRefinements = ({
           </span>
           <span className="font-mono text-[9px] text-zinc-700">02</span>
         </div>
-        <CurrentRefinements currencyCode={currencyCode} />
+        <CurrentRefinements
+          currencyCode={currencyCode}
+          categories={categories}
+        />
       </div>
 
       <div>
@@ -101,6 +110,7 @@ const StoreRefinements = ({
         <RefinementGroup
           attribute={CATEGORY_ATTRIBUTE}
           title={t("store.refinements.category")}
+          labels={getCategoryLabels(categories)}
         />
       </div>
 

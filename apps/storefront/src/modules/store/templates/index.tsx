@@ -8,14 +8,32 @@ import { Configure, InstantSearch } from "react-instantsearch"
 
 import { useT } from "@lib/i18n/provider"
 import { PRODUCT_INDEX_NAME, searchClient } from "@lib/search-client"
+import type { StoreCategoryNode } from "@lib/util/store-categories"
 import StoreHits from "@modules/store/components/store-hits"
+import {
+  getCategoryFacetValues,
+  StoreCategoryPreset,
+  StoreEyebrow,
+  StoreTitle,
+} from "@modules/store/components/store-category"
+import { CATEGORY_ATTRIBUTE } from "@modules/store/components/store-refinements/attributes"
 import StoreRefinements from "@modules/store/components/store-refinements"
 import StoreSearchBox from "@modules/store/components/store-search-box"
 
 const PRODUCT_LIMIT = 12
 
-const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
+const StoreTemplate = ({
+  currencyCode,
+  categories = [],
+  categoryHandle = null,
+}: {
+  currencyCode: string
+  categories?: StoreCategoryNode[]
+  categoryHandle?: string | null
+}) => {
   const t = useT()
+  // `/store?category=<handle>` opens with that category already applied.
+  const categoryValues = getCategoryFacetValues(categories, categoryHandle)
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
@@ -64,16 +82,30 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
       </div>
 
       <div className="content-container relative">
+        <InstantSearch
+          indexName={PRODUCT_INDEX_NAME}
+          searchClient={searchClient as unknown as SearchClient}
+          routing
+          future={{ preserveSharedStateOnUnmount: true }}
+          initialUiState={
+            categoryValues.length
+              ? {
+                  [PRODUCT_INDEX_NAME]: {
+                    refinementList: { [CATEGORY_ATTRIBUTE]: categoryValues },
+                  },
+                }
+              : undefined
+          }
+        >
+          <StoreCategoryPreset categories={categories} handle={categoryHandle} />
+
         {/* Store introduction */}
         <header className="mb-9 border-b border-white/[0.10] pb-7 small:mb-12 small:pb-9">
           {/* Eyebrow */}
           <div className="mb-6 flex items-center gap-3">
             <span className="h-px w-7 bg-white/50" />
 
-            <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-zinc-500">
-              FORSTEK <span className="text-zinc-700">/</span>{" "}
-              {t("store.page.eyebrow")}
-            </span>
+            <StoreEyebrow categories={categories} />
           </div>
 
           {/* Main heading and description */}
@@ -82,7 +114,7 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
               data-testid="store-page-title"
               className="text-[clamp(3.2rem,7.2vw,6.4rem)] font-semibold leading-[0.86] tracking-[-0.075em] text-white"
             >
-              {t("store.page.title")}
+              <StoreTitle categories={categories} />
               <span className="text-zinc-600">.</span>
             </h1>
 
@@ -104,12 +136,6 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
           </div>
         </header>
 
-        <InstantSearch
-          indexName={PRODUCT_INDEX_NAME}
-          searchClient={searchClient as unknown as SearchClient}
-          routing
-          future={{ preserveSharedStateOnUnmount: true }}
-        >
           <Configure hitsPerPage={PRODUCT_LIMIT} />
 
           {/* Store toolbar */}
@@ -292,7 +318,10 @@ const StoreTemplate = ({ currencyCode }: { currencyCode: string }) => {
                       </span>
                     </div>
 
-                    <StoreRefinements currencyCode={currencyCode} />
+                    <StoreRefinements
+                      currencyCode={currencyCode}
+                      categories={categories}
+                    />
                   </div>
 
                   {/* Drawer footer */}

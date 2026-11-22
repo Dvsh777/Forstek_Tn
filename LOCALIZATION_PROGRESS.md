@@ -55,11 +55,47 @@ Commerce data (product titles/descriptions, prices, images, categories, collecti
 - Backend `/store/locales` must contain `fr`/`ar` locales for `x-medusa-locale` to be sent; otherwise the UI still translates but products stay in the default language.
 - French/Arabic strings were machine-written and should get a native review.
 
-## Stage 2 (not started)
-- Configure Medusa v2 locales and translation of products, variants, options, categories, collections.
-- Ensure product/category fetches pass `x-medusa-locale` (existing `getLocale()` hooks) and cache keys include the locale.
-- Translate dynamic strings that come from backend data (shipping option names, payment titles from providers, promotions).
+## Stage 2 — Medusa commerce translations (code written, NOT yet run)
 
-## Stage 3 (not started)
+Installed: Medusa 2.22.1 (backend) and `@medusajs/js-sdk` 2.22.1 — above the 2.12.3 minimum. `@medusajs/translation` is part of `defineConfig` and only needs the feature flag.
+
+### Translation Module config
+- `apps/backend/medusa-config.ts`: added `featureFlags: { translation: true }` (nothing else changed). No custom table/service was created.
+- Locale codes are BCP 47 and must exist in the module's locale table: store supports `en-US` (original content), `fr-FR`, `ar-SA` (all built-in defaults). The storefront maps `fr-FR` → `fr`, `ar-SA` → `ar` (`resolveLanguage`).
+
+### Commands to run (in `apps/backend`)
+1. `npx medusa db:migrate` (creates the translation tables; no reset needed)
+2. Restart the backend (`npm run dev`) so the flag, locales and translation settings load.
+3. `npx medusa exec ./src/scripts/seed-translations.ts dry` — report only.
+4. `npx medusa exec ./src/scripts/seed-translations.ts` — applies. Safe to re-run: existing translation records are never overwritten, only missing fields are added.
+5. Anything it could not translate is written to `apps/backend/untranslated-catalog.json` (send it back to get it translated; nothing is guessed).
+
+### Supported commerce resources (per the installed module)
+product (title, subtitle, description, material), product_variant (title, material), product_category (name, description), product_collection (title), product_tag, product_type, product_option (title), product_option_value. The script only writes fields the module reports as translatable.
+
+### Translation batch progress
+- Built-in FR/AR text (`src/scripts/data/catalog-translations.ts`): the 8 seed categories, 4 collections, 6 tags, 5 options and their values, the 4 seed products (title + description) and all generated demo products (title, subtitle, description, variant titles).
+- Products/categories you created yourself (e.g. French-named PC Portable categories) are not covered until they appear in `untranslated-catalog.json` and are translated. English records, prices, stock, handles, images and relationships are not touched.
+
+### SDK / locale behavior
+- Server: Stage 1 `sdk.client.fetch` wrapper (`lib/config.ts`) adds `x-medusa-locale` from the `_medusa_locale` cookie to every request; the Medusa docs list the header and `?locale=` as the two ways. `sdk.setLocale` is browser-only and is not used.
+- Language switch (`updateLocale`) already sets the cookie, updates the cart locale and revalidates products/categories/collections tags.
+- `listCategoryTree` now asks explicitly for the default content (`x-medusa-locale: en-US`) for the facet name, because the wrapper would otherwise return the translated name. `label` is the translated name for display.
+
+### InstantSearch behavior
+- The index (`apps/backend/src/search/product.ts`) stores the ORIGINAL title, description and category names. Filtering therefore keeps working in every language: facet values stay the original category names; the store shows translated labels for them (`getCategoryLabels`).
+- Product titles shown in the hit grid are re-read from `/store/products` for the active locale (`useLocalizedTitles`), falling back to the indexed title.
+- Not done: text search matches the original (English) title/description only, not French/Arabic text. Fixing that means indexing translated fields in the backend search index (a larger change, left for later).
+
+### Cart localization
+Supported in 2.22.1: `locale` is sent on cart create (`getOrSetCart`) and updated on language switch (`updateLocale`); cart id, items, region and customer are untouched. The locale is copied to the order on completion.
+
+### To verify after running the commands
+- `GET /store/products?locale=fr-FR` (with the publishable key) returns French titles.
+- Check the same for `/store/product-categories?locale=fr-FR` and `/store/collections?locale=fr-FR`; the docs only guarantee products, so if those stay English, category/collection names stay English in the UI (the code falls back safely).
+- Switch EN → FR → AR on `/store`, a product page and the cart.
+- Dynamic strings that are not catalogue records (shipping option names, promotions, payment provider titles) are not covered by this module and are still untranslated.
+
+## Stage 3 (not started) — Arabic RTL, still to do
 - Arabic RTL: `<html lang dir>` per language, logical Tailwind classes (`ms-*`/`me-*`, `text-start`), mirrored icons/chevrons, RTL-safe layouts and carousels.
 - Locale-aware date/number formatting, `hreflang` per language, SEO metadata alternates.

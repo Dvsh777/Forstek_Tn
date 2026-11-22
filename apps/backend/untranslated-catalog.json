@@ -1,0 +1,58 @@
+[
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7E19VQG38P3CXBFZT1",
+    "field": "value",
+    "locale_code": "fr-FR",
+    "value": "S"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7E19VQG38P3CXBFZT1",
+    "field": "value",
+    "locale_code": "ar-SA",
+    "value": "S"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7F2H4QCT1FZ1JZV2CE",
+    "field": "value",
+    "locale_code": "fr-FR",
+    "value": "M"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7F2H4QCT1FZ1JZV2CE",
+    "field": "value",
+    "locale_code": "ar-SA",
+    "value": "M"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7FC4ER3N4E17KE229G",
+    "field": "value",
+    "locale_code": "fr-FR",
+    "value": "XL"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7FC4ER3N4E17KE229G",
+    "field": "value",
+    "locale_code": "ar-SA",
+    "value": "XL"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7FR9XTW327TTBH4MSX",
+    "field": "value",
+    "locale_code": "fr-FR",
+    "value": "L"
+  },
+  {
+    "reference": "product_option_value",
+    "reference_id": "optval_01M5WG6Y7FR9XTW327TTBH4MSX",
+    "field": "value",
+    "locale_code": "ar-SA",
+    "value": "L"
+  }
+]

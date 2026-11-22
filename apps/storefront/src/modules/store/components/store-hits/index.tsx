@@ -2,10 +2,11 @@
 "use client"
 
 import type { Hit } from "instantsearch.js"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useHits, useInstantSearch } from "react-instantsearch"
 
-import { useT } from "@lib/i18n/provider"
+import { sdk } from "@lib/config"
+import { useLanguage, useT } from "@lib/i18n/provider"
 import useSearchSettled from "@lib/hooks/use-search-settled"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { Text } from "@modules/common/components/ui"
@@ -27,9 +28,54 @@ type StoreHitsProps = {
   currencyCode: string
 }
 
+/**
+ * The search index holds the original (English) product titles, so in French or
+ * Arabic the visible hits are re-read from the Store API, which returns the
+ * translated titles for the active locale. Until that answers, or if it
+ * fails, the indexed title is shown.
+ */
+const useLocalizedTitles = (ids: string[]) => {
+  const language = useLanguage()
+  const [titles, setTitles] = useState<Record<string, string>>({})
+  const key = ids.join(",")
+
+  useEffect(() => {
+    if (language === "en" || !ids.length) {
+      setTitles({})
+      return
+    }
+
+    let cancelled = false
+
+    sdk.store.product
+      .list({ id: ids, limit: ids.length, fields: "id,title" })
+      .then(({ products }) => {
+        if (cancelled) return
+        setTitles(
+          Object.fromEntries(
+            products.map((product) => [product.id, product.title])
+          )
+        )
+      })
+      .catch(() => {
+        if (!cancelled) setTitles({})
+      })
+
+    return () => {
+      cancelled = true
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key, language])
+
+  return titles
+}
+
 const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
   const t = useT()
   const { items } = useHits<ProductHit>()
+  const localizedTitles = useLocalizedTitles(
+    items.map((hit) => hit.objectID)
+  )
   const { status, error, indexUiState } = useInstantSearch()
   const { isSearching, hasNoResultsYet } = useSearchSettled()
 
@@ -190,7 +236,7 @@ const StoreHits = ({ hitsPerPage, currencyCode }: StoreHitsProps) => {
                           className="min-w-0 text-ui-fg-subtle transition-colors duration-300 group-hover:text-ui-fg-base"
                           data-testid="product-title"
                         >
-                          {hit.title}
+                          {localizedTitles[hit.objectID] ?? hit.title}
                         </Text>
 
                         <div className="shrink-0 transition-transform duration-300 ease-out group-hover:translate-x-0.5">
