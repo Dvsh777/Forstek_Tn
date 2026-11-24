@@ -103,7 +103,7 @@ export const StoreEyebrow = ({
 
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={t("store.breadcrumb")}
       data-testid="store-breadcrumb"
       className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[9px] uppercase tracking-[0.28em] text-zinc-500"
     >

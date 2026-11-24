@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 
 import { getCollectionByHandle } from "@lib/data/collections"
 import { getT } from "@lib/i18n/server"
+import { STORE_NAME } from "@lib/util/site"
 import CollectionTemplate from "@modules/collections/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { parseOptionValueIds } from "@lib/util/product-option-filters"
@@ -28,7 +29,7 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 
   const t = await getT()
   const metadata = {
-    title: `${collection.title} | Medusa Store`,
+    title: `${collection.title} | ${STORE_NAME}`,
     description: t("common.meta.collectionDescription", {
       title: collection.title,
     }),

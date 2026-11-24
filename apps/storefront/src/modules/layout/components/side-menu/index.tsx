@@ -128,7 +128,7 @@ const SideMenu = ({
                                 </span>
                               </div>
 
-                              <ArrowRightMini className="h-5 w-5 text-zinc-600 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 group-hover:text-white" />
+                              <ArrowRightMini className="rtl-flip h-5 w-5 text-zinc-600 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100 group-hover:text-white" />
                             </LocalizedClientLink>
                           </li>
                         )

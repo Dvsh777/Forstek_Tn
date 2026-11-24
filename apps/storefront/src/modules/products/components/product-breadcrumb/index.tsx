@@ -1,5 +1,8 @@
+"use client"
+
 import { Fragment } from "react"
 
+import { useT } from "@lib/i18n/provider"
 import type { StoreCategoryNode } from "@lib/util/store-categories"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
@@ -15,11 +18,12 @@ const ProductBreadcrumb = ({
   trail: StoreCategoryNode[]
   productTitle: string
 }) => {
+  const t = useT()
   const linkClass = "transition-colors duration-300 hover:text-white"
 
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label={t("store.breadcrumb")}
       data-testid="product-breadcrumb"
       className="flex flex-wrap items-center gap-x-2 gap-y-1 text-start font-mono text-[9px] uppercase tracking-[0.28em] text-zinc-500"
     >

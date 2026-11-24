@@ -3,9 +3,10 @@ import { Metadata } from "next"
 import { getT } from "@lib/i18n/server"
 import InteractiveLink from "@modules/common/components/interactive-link"
 
-export const metadata: Metadata = {
-  title: "404",
-  description: "Something went wrong",
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getT()
+
+  return { title: "404", description: t("common.notFound.metaDescription") }
 }
 
 export default async function NotFound() {

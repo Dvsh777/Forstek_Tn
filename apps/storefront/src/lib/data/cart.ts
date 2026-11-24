@@ -67,11 +67,18 @@ export async function getOrSetCart(countryCode: string) {
 
   if (!cart) {
     const locale = await getLocale()
-    const cartResp = await sdk.store.cart.create(
-      { region_id: region.id, locale: locale || undefined },
-      {},
-      headers
-    )
+    // An unsupported locale must never block the cart: retry without it, the
+    // cart then simply uses the store's default locale.
+    const cartResp = await sdk.store.cart
+      .create(
+        { region_id: region.id, locale: locale || undefined },
+        {},
+        headers
+      )
+      .catch((error) => {
+        if (!locale) throw error
+        return sdk.store.cart.create({ region_id: region.id }, {}, headers)
+      })
     cart = cartResp.cart
 
     await setCartId(cart.id)

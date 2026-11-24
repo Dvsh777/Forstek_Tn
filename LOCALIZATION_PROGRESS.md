@@ -55,7 +55,10 @@ Commerce data (product titles/descriptions, prices, images, categories, collecti
 - Backend `/store/locales` must contain `fr`/`ar` locales for `x-medusa-locale` to be sent; otherwise the UI still translates but products stay in the default language.
 - French/Arabic strings were machine-written and should get a native review.
 
-## Stage 2 — Medusa commerce translations (code written, NOT yet run)
+## Stage 2 — Medusa commerce translations (VERIFIED by the project owner)
+Status (reported by the owner, not re-run by me): Translation Module active (registered explicitly in `modules` because `defineConfig` evaluates its `disable` before `featureFlags` is read), 46 translations created. Only the apparel size codes `S`, `M`, `L`, `XL` remain in `untranslated-catalog.json`; they are standard size labels and stay as they are.
+
+Original implementation notes:
 
 Installed: Medusa 2.22.1 (backend) and `@medusajs/js-sdk` 2.22.1 — above the 2.12.3 minimum. `@medusajs/translation` is part of `defineConfig` and only needs the feature flag.
 
@@ -96,6 +99,60 @@ Supported in 2.22.1: `locale` is sent on cart create (`getOrSetCart`) and update
 - Switch EN → FR → AR on `/store`, a product page and the cart.
 - Dynamic strings that are not catalogue records (shipping option names, promotions, payment provider titles) are not covered by this module and are still untranslated.
 
-## Stage 3 (not started) — Arabic RTL, still to do
-- Arabic RTL: `<html lang dir>` per language, logical Tailwind classes (`ms-*`/`me-*`, `text-start`), mirrored icons/chevrons, RTL-safe layouts and carousels.
-- Locale-aware date/number formatting, `hreflang` per language, SEO metadata alternates.
+## Stage 3 — Arabic RTL & final multilingual verification — DONE (2026-11-24)
+Status: complete. Verification results below were run and reported by the project owner (not run from the assistant session).
+
+Client requirement: Arabic text reads right to left, but the FORSTEK layout is NOT mirrored.
+
+### What is implemented
+- `app/layout.tsx` sets `<html lang dir>`: `ar` → `rtl`; `en`/`fr` → `ltr`.
+- `styles/globals.css` (`html[dir="rtl"]` block): `body` stays `direction: ltr` so grids, flex rows, positions and carousels keep the designed layout. Headings/paragraphs/legends get `direction: rtl` (right-aligned, trailing `.` at the sentence end). Inline text (`span, a, button, label, li, dt, dd, td, th`) uses `unicode-bidi: plaintext` so Arabic, French/English and numbers each take their own direction in one row. Email/tel/number/url inputs stay ltr.
+- `.rtl-flip` (`scale: -1 1`, Arabic only) on directional arrows: store toolbar and drawer CTA, hero tile, side-menu links. Images, numbers and unrelated icons are not flipped.
+- Filter chips and facet labels are wrapped in `<bdi>`, so mixed tokens such as `Size: L` and `الفئة: بناطيل` are isolated.
+- `lib/config.ts`: the `x-medusa-locale` header is only sent when a language cookie exists (previously a missing cookie sent a null header).
+
+### Frontend ↔ backend language flow (checked by reading the code)
+- `_medusa_locale` (not httpOnly) is read by `getLocale()` (server action, so usable from Server Components, Client Components and Server Actions) and added to every Store API request by the `sdk.client.fetch` wrapper.
+- Caching: product/category/collection fetches use `force-cache` with tags; the locale header is part of each request (separate cache entries per locale were seen in the dev logs), and `updateLocale` revalidates products, categories, collections and carts.
+- Cart: created with `locale` (`getOrSetCart`); `updateLocale` updates the cart's locale and revalidates; failure is swallowed so switching never breaks.
+- Facets: `/store` keeps filtering on original (`en-US`) category names; labels shown are translated. Option names/values in the filter drawer come from the index and stay in the original language; on product pages Medusa returns translated options.
+- Fallbacks: UI keys fall back to English then to the key; untranslated backend fields come back in the original language from Medusa.
+
+### Hardcoded text audit
+Scanned the Stage 1 component files (account, cart, checkout, common, home, layout, order, store, products) for JSX text and `placeholder`/`aria-label`/`title`/`alt` literals: no customer-facing English left except the `you@example.com` example placeholder. `src/app` pages and `lib` constants were not re-scanned.
+
+### Audit pass (code review, 2026-11-23)
+Faults found and fixed:
+- `app/[countryCode]/(checkout)/not-found.tsx` was fully hardcoded English; now uses `common.notFound.*` via `getT()`.
+- `aria-label="Breadcrumb"` (store page and product page) was English; now `store.breadcrumb` (EN/FR/AR). `product-breadcrumb` became a client component to use `useT()`.
+
+Final hardening (included in the verified build):
+- `_medusa_locale` cookie is now `sameSite: "lax"` (`lib/data/locale-actions.ts`), so the language survives a cross-site return from a redirect payment.
+- `getOrSetCart` retries `cart.create` without `locale` if creating it with the cookie locale fails, so an unsupported locale never blocks the cart.
+- The four `not-found.tsx` files now build their metadata description with `generateMetadata()` and `common.notFound.metaDescription`; the collection page title suffix uses `STORE_NAME` instead of `Medusa Store`.
+
+Closed item: a one-off "Objects are not valid as a React child" error appeared at dev start while the backend was down. No cause was found in the code; it did not reproduce in the later browser run with the backend running.
+
+RTL review: `body` stays `direction: ltr`; only text elements switch to RTL; `.rtl-flip` composes correctly with Tailwind hover translate; inputs of type email/tel/number/url stay LTR; images and numbers are not flipped.
+
+### Verification results (run by the project owner, 2026-11-24)
+- `npx tsc --noEmit`: passed, 0 errors.
+- `npm run lint`: passed; only pre-existing React Hook warnings, no errors.
+- `npm run build`: succeeded in Next.js 16.3.8 with the backend running.
+- Browser click-through of `/store` in EN, FR and AR: no React child error; Arabic punctuation, chips and LTR page layout correct; French category cards not clipped.
+- Final scan (assistant, code read): no remaining `Medusa Store` string in `src`; `STORE_NAME` resolves to the brand name; the Stage 3 hardening edits are present.
+
+### Remaining / limitations
+- Search index holds original text only: text search matches English titles/descriptions and option filter labels stay original.
+- Not translated by the Translation Module: shipping option names, promotions, payment provider titles, other non-catalog entities.
+- Dates/numbers use fixed locales; `hreflang`/SEO alternates per language not added.
+- Region/shipping defaults (e.g. a Denmark entry in the country selector) are region data, not localization.
+- French strings in narrow category cards were checked in the browser and are not clipped.
+- FR/AR UI strings are machine-written and should get a native review before launch.
+- Apparel size codes `S`, `M`, `L`, `XL` stay as standard labels (only entries left in `untranslated-catalog.json`).
+
+### Medusa v2.22.1 scope notes
+- Translation Module is registered explicitly in `modules` (`defineConfig` evaluates its `disable` flag before `featureFlags` is read); the `translation` feature flag is also set.
+- It translates catalog entities only (products, variants, categories, collections, tags, types, options, option values). Shipping options, promotions and payment provider titles are not covered.
+- Locales use BCP 47 codes (`en-US`, `fr-FR`, `ar-SA`) and must be listed in the store's supported locales; the storefront falls back to the store default if a cart is created with an unsupported one.
+- The search index holds original text only; translating search needs the backend indexer extended.

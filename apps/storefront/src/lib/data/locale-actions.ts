@@ -27,7 +27,9 @@ export const setLocaleCookie = async (locale: string) => {
   cookies.set(LOCALE_COOKIE_NAME, locale, {
     maxAge: 60 * 60 * 24 * 365, // 1 year
     httpOnly: false, // Allow client-side access
-    sameSite: "strict",
+    // "lax": still sent when the customer returns from a redirect-based
+    // payment (cross-site top-level navigation), so the language is kept.
+    sameSite: "lax",
     secure: process.env.NODE_ENV === "production",
   })
 }

@@ -201,6 +201,37 @@ html[data-mode="dark"] {
   }
 }
 
+/*
+ * Arabic (html[dir="rtl"], set in app/layout.tsx). Text reads right to left;
+ * the page structure (grids, flex rows, positions, carousels) keeps the layout
+ * the site was designed with, so the body stays ltr and only text elements are
+ * switched.
+ */
+html[dir="rtl"] body {
+  direction: ltr;
+}
+
+/* Block text: right-aligned, with punctuation at the end of the sentence. */
+html[dir="rtl"] :is(h1, h2, h3, h4, h5, h6, p, legend, figcaption) {
+  direction: rtl;
+}
+
+/* Inline text: each run takes its own base direction from its first letter,
+   so Arabic, French/English and numbers each sit correctly in one row. */
+html[dir="rtl"] :is(span, a, button, label, li, dt, dd, td, th) {
+  unicode-bidi: plaintext;
+}
+
+/* Email, phone and numeric fields always read left to right. */
+html[dir="rtl"] :is(input[type="email"], input[type="tel"], input[type="number"], input[type="url"]) {
+  direction: ltr;
+}
+
+/* Arrows that point along the reading direction ("next", "go to"). */
+html[dir="rtl"] .rtl-flip {
+  scale: -1 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

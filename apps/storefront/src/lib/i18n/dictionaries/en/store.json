@@ -4,6 +4,7 @@
     "description": "Explore all of our products."
   },
   "mixed": "Mixed",
+  "breadcrumb": "Breadcrumb",
   "page": {
     "eyebrow": "THE STORE",
     "title": "All products",

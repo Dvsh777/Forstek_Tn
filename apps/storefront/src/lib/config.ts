@@ -21,10 +21,15 @@ sdk.client.fetch = async <T>(
   init?: FetchArgs
 ): Promise<T> => {
   const headers = init?.headers ?? {}
-  let localeHeader: Record<string, string | null> | undefined
+  // Only send the header when a language is chosen: without the cookie, Medusa
+  // answers with the original content instead of receiving a null/"null" locale.
+  let localeHeader: Record<string, string> | undefined
   try {
-    localeHeader = await getLocaleHeader()
-    headers["x-medusa-locale"] ??= localeHeader["x-medusa-locale"]
+    const { "x-medusa-locale": locale } = await getLocaleHeader()
+    if (locale) {
+      localeHeader = { "x-medusa-locale": locale }
+      headers["x-medusa-locale"] ??= locale
+    }
   } catch {}
 
   const newHeaders = {

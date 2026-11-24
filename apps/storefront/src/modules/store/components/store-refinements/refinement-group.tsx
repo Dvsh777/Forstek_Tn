@@ -43,7 +43,7 @@ const RefinementGroup = ({ attribute, title, labels }: RefinementGroupProps) => 
                   "text-ui-fg-subtle": !item.isRefined,
                 })}
               >
-                {labels?.[item.value] ?? item.label}
+                <bdi>{labels?.[item.value] ?? item.label}</bdi>
               </span>
               <span className="text-small-regular shrink-0 text-ui-fg-muted">
                 ({item.count})

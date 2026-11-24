@@ -134,7 +134,7 @@ const CurrentRefinements = ({
                 className="border-ui-border-interactive text-ui-fg-base border text-small-regular h-8 rounded-rounded px-3 flex items-center gap-x-1.5 transition-colors duration-150 hover:bg-ui-bg-base-hover"
                 data-testid="remove-refinement"
               >
-                {label}
+                <bdi>{label}</bdi>
                 <XMarkMini className="text-ui-fg-muted" />
               </button>
             </li>

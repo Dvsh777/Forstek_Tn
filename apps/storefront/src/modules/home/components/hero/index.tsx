@@ -205,7 +205,7 @@ const Hero = async ({
                     >
                       <svg
                         viewBox="0 0 24 24"
-                        className="h-5 w-5 transition-transform duration-500 group-hover:translate-x-1"
+                        className="rtl-flip h-5 w-5 transition-transform duration-500 group-hover:translate-x-1"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1.6"
